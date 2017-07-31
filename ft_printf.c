@@ -6,15 +6,33 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(long n)
+void	ft_putnbr(long n, char b)
 {
 	char	buf[32];
 	int		i;
+	int		base;
 
+	if (b == 'o')
+		base = 8;
+	else if (b == 'x')
+	{
+		base = 16;
+		write(1, "0x", 2);
+	}
+	else
+		base = 10;
 	i = 0;
-	buf[i++] = ((n % 10) + '0');
-	while (n /= 10)
-		buf[i++] = ((n % 10) + '0');
+	if (n % base < 10)
+		buf[i++] = ((n % base) + '0');
+	else
+		buf[i++] = ((n % base) - 10 + 'A');
+	while (n /= base)
+	{
+		if (n % base < 10)
+			buf[i++] = ((n % base) + '0');
+		else
+			buf[i++] = ((n % base) - 10 + 'A');
+	}
 	while (i)
 		ft_putchar(buf[--i]);
 }
@@ -43,7 +61,7 @@ void	ft_printf(char *fmt, ... )
 				while (*ptr)
 					ft_putchar(*ptr++);
 			}
-			else if (*fmt == 'd')
+			else if (*fmt == 'd' || *fmt == 'o' || *fmt == 'x')
 			{
 				if (lflag)
 					num = va_arg(a_list, long);
@@ -51,11 +69,11 @@ void	ft_printf(char *fmt, ... )
 					num = va_arg(a_list, int);
 				if (num < 0)
 				{
-					ft_putchar('-');
+					if (*fmt == 'd')
+						ft_putchar('-');
 					num *= -1;
 				}
-				ft_putnbr(num);
-						
+				ft_putnbr(num, *fmt);
 			}
 			else
 				ft_putchar(*fmt);
