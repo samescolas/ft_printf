@@ -15,23 +15,20 @@ void	ft_putnbr(long n, char b)
 	if (b == 'o')
 		base = 8;
 	else if (b == 'x')
-	{
 		base = 16;
-		write(1, "0x", 2);
-	}
 	else
 		base = 10;
 	i = 0;
 	if (n % base < 10)
 		buf[i++] = ((n % base) + '0');
 	else
-		buf[i++] = ((n % base) - 10 + 'A');
+		buf[i++] = ((n % base) - 10 + 'a');
 	while (n /= base)
 	{
 		if (n % base < 10)
 			buf[i++] = ((n % base) + '0');
 		else
-			buf[i++] = ((n % base) - 10 + 'A');
+			buf[i++] = ((n % base) - 10 + 'a');
 	}
 	while (i)
 		ft_putchar(buf[--i]);
