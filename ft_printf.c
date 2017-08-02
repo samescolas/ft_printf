@@ -1,20 +1,29 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "ft_printf.h"
 #include "libft/libft.h"
+
 /*
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 */
-/*
-void	ft_putnbr(long n, char b)
+
+void	ft_putnum(long n, char b)
 {
 	char	buf[32];
 	int		i;
 	int		base;
 
+	if (b == 'd')
+		n = (int)n;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
 	if (b == 'o')
 		base = 8;
 	else if (b == 'x')
@@ -36,9 +45,10 @@ void	ft_putnbr(long n, char b)
 	while (i)
 		ft_putchar(buf[--i]);
 }
-*/
+
 static int	print_arg(t_argfmt arg)
 {
+	/*
 	ft_putstr("inside print_arg\n");
 	ft_putstr("flag: ");
 	ft_putchar(arg.flag);
@@ -51,6 +61,12 @@ static int	print_arg(t_argfmt arg)
 	ft_putstr("\nspecifier: ");
 	ft_putchar(arg.specifier);
 	ft_putstr("\n");
+	*/
+
+	if (ft_toupper(arg.specifier) == 'S')
+		ft_putstr(arg.arg.str_val);
+	else if (ft_toupper(arg.specifier) == 'D')
+		ft_putnum(arg.arg.num_val, arg.length == 'l' ? '\0' : arg.specifier);
 	return (1);
 }
 
@@ -62,7 +78,7 @@ static int	parse_arg(char *fmt, void *arg)
 	//ft_putstr("\ninside parse_arg...\n");
 	//ft_putstr("format string: ");
 	//ft_putendl(fmt);
-	//ft_bzero(&options, sizeof(options));
+	ft_bzero(&options, sizeof(options));
 	options.flag = (is_flag(*fmt) ? *fmt++ : '\0');
 	options.width = ft_atoi(fmt);
 	while (*fmt && ft_isdigit(*fmt))
@@ -76,7 +92,7 @@ static int	parse_arg(char *fmt, void *arg)
 	ft_bzero(&options.arg, sizeof(long));
 	if (is_numeric_specifier(*fmt))
 	{
-		num = (long*)arg;
+		num = (long *)arg;
 		options.arg.num_val = *num;
 	}
 	else if (*fmt == 's')
@@ -127,9 +143,10 @@ void	ft_printf(char *fmt, ... )
 				num = va_arg(a_list, long);
 				parse_arg(arg_fmt, (void *)&num);
 			}
+			++fmt;
 		}
-		//else
-			//ft_putchar(*fmt++);
+		else
+			ft_putchar(*fmt++);
 	}
 }
 /*
