@@ -1,11 +1,14 @@
 #include <stdarg.h>
 #include <unistd.h>
-
+#include "ft_printf.h"
+#include "libft/libft.h"
+/*
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
+*/
+/*
 void	ft_putnbr(long n, char b)
 {
 	char	buf[32];
@@ -33,44 +36,103 @@ void	ft_putnbr(long n, char b)
 	while (i)
 		ft_putchar(buf[--i]);
 }
-
-static int	print_arg(char *fmt, void *arg)
+*/
+static int	print_arg(t_argfmt arg)
 {
-	long	arg_num;
-	char	*arg_str;
-	long	length;
-	long	width;
-	float	precision;
-	char	flag;
-	int		verbose;
-
-	verbose = 1;
-
-	if (is_flag(*fmt))
-		flag = *fmt++;
-	if (verbose)
-	{
-		write(1, "flag: ", 6);
-		write(1, &flag, 1);
-		write(1, "\n", 1);
-	}
-	width = ft_atoi(fmt);
-	if (verbose)
-	{
-		write(1, "length: ", 8);
-		ft_putnbr(width);
-		write(1, "\n", 1);
-	}
-	while (*fmt && *fmt >= '0' && *fmt <= '9')
-		++fmt;
-	if (*fmt == '.')
-		precision = ft_atoi(++(*fmt));
-	while (*fmt && *fmt >= '0' && *fmt <= '9')
-		++fmt;
-	if (is_length_specifier(*fmt))
-		length = *fmt++;
+	ft_putstr("inside print_arg\n");
+	ft_putstr("flag: ");
+	ft_putchar(arg.flag);
+	ft_putstr("\nwidth: ");
+	ft_putnbr((int)arg.width);
+	ft_putstr("\nprecision: ");
+	ft_putnbr((int)arg.precision);
+	ft_putstr("\nlength: ");
+	ft_putnbr((int)arg.length);
+	ft_putstr("\nspecifier: ");
+	ft_putchar(arg.specifier);
+	ft_putstr("\n");
+	return (1);
 }
 
+static int	parse_arg(char *fmt, void *arg)
+{
+	t_argfmt	options;
+	long		*num;
+
+	//ft_putstr("\ninside parse_arg...\n");
+	//ft_putstr("format string: ");
+	//ft_putendl(fmt);
+	//ft_bzero(&options, sizeof(options));
+	options.flag = (is_flag(*fmt) ? *fmt++ : '\0');
+	options.width = ft_atoi(fmt);
+	while (*fmt && ft_isdigit(*fmt))
+		++fmt;
+	if (*fmt == '.')
+		options.precision = ft_atoi(++fmt);
+	while (*fmt && ft_isdigit(*fmt))
+		++fmt;
+	if (is_length_specifier(*fmt))
+		options.length = *fmt++;
+	ft_bzero(&options.arg, sizeof(long));
+	if (is_numeric_specifier(*fmt))
+	{
+		num = (long*)arg;
+		options.arg.num_val = *num;
+	}
+	else if (*fmt == 's')
+		options.arg.str_val = (char *)arg;
+	else
+		return (-1);
+	options.specifier = *fmt;
+	return (print_arg(options));
+}
+
+void	ft_printf(char *fmt, ... )
+{
+	va_list	a_list;
+	char	*arg_fmt;
+	char	*str;
+	long	num;
+	void	*ptr;
+
+	va_start( a_list, fmt);
+	while (*fmt)
+	{
+		if (*fmt == '%')
+		{
+			arg_fmt = fmt + 1;
+			if (*(++fmt) == '%')
+			{
+				ft_putchar('%');
+				++fmt;
+				continue ;
+			}
+			if (is_flag(*fmt))
+					++fmt;
+			while (*fmt && *fmt >= '0' && *fmt <= '9')
+				++fmt;
+			if (*fmt == '.')
+				++fmt;
+			while (*fmt && *fmt >= '0' && *fmt <= '9')
+				++fmt;
+			if (is_length_specifier(*fmt))
+				++fmt;
+			if (*fmt == 's')
+			{
+				str = va_arg(a_list, char *);
+				parse_arg(arg_fmt, str);
+			}
+			else
+			{
+				num = va_arg(a_list, long);
+				parse_arg(arg_fmt, (void *)&num);
+			}
+		}
+		//else
+			//ft_putchar(*fmt++);
+	}
+}
+/*
 void	ft_printf(char *fmt, ... )
 {
 	va_list	a_list;
@@ -118,3 +180,4 @@ void	ft_printf(char *fmt, ... )
 			ft_putchar(*fmt++);
 	}
 }
+*/
