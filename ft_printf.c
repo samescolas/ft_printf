@@ -34,6 +34,43 @@ void	ft_putnbr(long n, char b)
 		ft_putchar(buf[--i]);
 }
 
+static int	print_arg(char *fmt, void *arg)
+{
+	long	arg_num;
+	char	*arg_str;
+	long	length;
+	long	width;
+	float	precision;
+	char	flag;
+	int		verbose;
+
+	verbose = 1;
+
+	if (is_flag(*fmt))
+		flag = *fmt++;
+	if (verbose)
+	{
+		write(1, "flag: ", 6);
+		write(1, &flag, 1);
+		write(1, "\n", 1);
+	}
+	width = ft_atoi(fmt);
+	if (verbose)
+	{
+		write(1, "length: ", 8);
+		ft_putnbr(width);
+		write(1, "\n", 1);
+	}
+	while (*fmt && *fmt >= '0' && *fmt <= '9')
+		++fmt;
+	if (*fmt == '.')
+		precision = ft_atoi(++(*fmt));
+	while (*fmt && *fmt >= '0' && *fmt <= '9')
+		++fmt;
+	if (is_length_specifier(*fmt))
+		length = *fmt++;
+}
+
 void	ft_printf(char *fmt, ... )
 {
 	va_list	a_list;
