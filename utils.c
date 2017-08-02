@@ -14,3 +14,12 @@ int		is_length_specifier(char c)
 		return (1);
 	return (0);
 }
+
+int		is_numeric_specifier(char c)
+{
+	if (c == 'c' || c == 'd' || c == 'i'
+			|| c == 'o' || c == 'u' || c == 'x'
+			|| c == 'X')
+		return (1);
+	return (0);
+}
