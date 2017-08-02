@@ -3,7 +3,7 @@
 
 # define IS_FLAG(x)
 
-typedef enum	e_arg
+typedef union	e_arg
 {
 	long long	num_val;
 	char		*str_val;
@@ -15,10 +15,12 @@ typedef struct	s_argfmt
 	long	width;
 	long	precision;
 	long	length;
+	char	specifier;
 	t_arg	arg;
 }				t_argfmt;
 
 int		is_flag(char c);
 int		is_length_specifier(char c);
+int		is_numeric_specifier(char c);
 
 #endif
