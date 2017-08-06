@@ -1,7 +1,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define IS_FLAG(x)
+# include "../libft/libft.h"
 
 typedef union	e_arg
 {
@@ -22,5 +22,7 @@ typedef struct	s_argfmt
 int		is_flag(char c);
 int		is_length_specifier(char c);
 int		is_numeric_specifier(char c);
+
+int		ftp_printnum(t_argfmt arg);
 
 #endif

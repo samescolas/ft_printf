@@ -1,8 +1,16 @@
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/05 17:26:01 by sescolas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 /*
 void	ft_putchar(char c)
@@ -16,6 +24,7 @@ void	ft_putnum(long n, char b)
 	char	buf[32];
 	int		i;
 	int		base;
+	char	offset;
 
 	if (b == 'd')
 		n = (int)n;
@@ -24,23 +33,27 @@ void	ft_putnum(long n, char b)
 		ft_putchar('-');
 		n *= -1;
 	}
-	if (b == 'o')
+	if (b == 'o' || b == 'O')
 		base = 8;
-	else if (b == 'x')
+	else if (b == 'x' || b == 'X')
 		base = 16;
 	else
 		base = 10;
+	if (b == 'X' || b == 'O')
+		offset = 'A';
+	else
+		offset = 'a';
 	i = 0;
 	if (n % base < 10)
 		buf[i++] = ((n % base) + '0');
 	else
-		buf[i++] = ((n % base) - 10 + 'a');
+		buf[i++] = ((n % base) - 10 + offset);
 	while (n /= base)
 	{
 		if (n % base < 10)
 			buf[i++] = ((n % base) + '0');
 		else
-			buf[i++] = ((n % base) - 10 + 'a');
+			buf[i++] = ((n % base) - 10 + offset);
 	}
 	while (i)
 		ft_putchar(buf[--i]);
@@ -64,17 +77,29 @@ static int	print_arg(t_argfmt arg)
 	*/
 
 	if (ft_toupper(arg.specifier) == 'S')
+	{
 		ft_putstr(arg.arg.str_val);
+		return (ft_strlen(arg.arg.str_val));
+	}
+	else if (is_numeric_specifier(arg.specifier))
+		return (ft_printnum(arg));
 	else if (ft_toupper(arg.specifier) == 'D')
+	{
 		ft_putnum(arg.arg.num_val, arg.length == 'l' ? '\0' : arg.specifier);
-	return (1);
+		return (ft_numlen(arg.arg.num_val, 10));
+	}
+	else if (ft_toupper(arg.specifier) == 'X')
+	{
+		ft_putnum(arg.arg.num_val, arg.specifier);
+		return (ft_numlen(arg.arg.num_val, 16));
+	}
+	return (0);
 }
 
 static int	parse_arg(char *fmt, void *arg)
 {
 	t_argfmt	options;
 	long		*num;
-
 	//ft_putstr("\ninside parse_arg...\n");
 	//ft_putstr("format string: ");
 	//ft_putendl(fmt);
@@ -103,23 +128,25 @@ static int	parse_arg(char *fmt, void *arg)
 	return (print_arg(options));
 }
 
-void	ft_printf(char *fmt, ... )
+int		ft_printf(const char *fmt, ... )
 {
 	va_list	a_list;
 	char	*arg_fmt;
 	char	*str;
 	long	num;
-	void	*ptr;
+	long	printed;
 
+	printed = 0;
 	va_start( a_list, fmt);
 	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
-			arg_fmt = fmt + 1;
+			arg_fmt = (char *)(fmt + 1);
 			if (*(++fmt) == '%')
 			{
 				ft_putchar('%');
+				++printed;
 				++fmt;
 				continue ;
 			}
@@ -136,18 +163,22 @@ void	ft_printf(char *fmt, ... )
 			if (*fmt == 's')
 			{
 				str = va_arg(a_list, char *);
-				parse_arg(arg_fmt, str);
+				printed += parse_arg(arg_fmt, str);
 			}
 			else
 			{
 				num = va_arg(a_list, long);
-				parse_arg(arg_fmt, (void *)&num);
+				printed += parse_arg(arg_fmt, (void *)&num);
 			}
 			++fmt;
 		}
 		else
+		{
 			ft_putchar(*fmt++);
+			printed += 1;
+		}
 	}
+	return (printed);
 }
 /*
 void	ft_printf(char *fmt, ... )

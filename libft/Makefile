@@ -6,11 +6,11 @@
 #    By: sescolas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/13 09:59:58 by sescolas          #+#    #+#              #
-#    Updated: 2017/05/25 11:16:57 by sescolas         ###   ########.fr        #
+#    Updated: 2017/08/05 16:39:41 by sescolas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftprintf.a
 
 HEADER = libft.h
 

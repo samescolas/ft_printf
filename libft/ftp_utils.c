@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/13 10:51:52 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/05 16:19:53 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/05 16:31:06 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/05 16:31:06 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_numlen(long long n, int base)
+int		is_flag(char c)
 {
-	int len;
-
-	if (n == 0)
+	if (c == '.' || c == '+' || c == '-'
+			|| c == ' ' || c == '0')
 		return (1);
-	len = (n < 0);
-	while (n != 0)
-	{
-		n /= base;
-		++len;
-	}
-	return (len);
+	return (0);
+}
+
+int		is_length_specifier(char c)
+{
+	if (c == 'h' || c == 'l' || c == 'L')
+		return (1);
+	return (0);
+}
+
+int		is_numeric_specifier(char c)
+{
+	if (c == 'c' || c == 'd' || c == 'i'
+			|| c == 'o' || c == 'u' || c == 'x'
+			|| c == 'X')
+		return (1);
+	return (0);
 }
