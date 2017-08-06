@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 13:35:57 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 16:34:29 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,33 @@ static int	print_arg(t_argfmt arg)
 	}
 	else if (is_numeric_specifier(arg.specifier))
 		return (ftp_printnum(arg));
+	return (0);
+}
+
+t_length	get_length(char **fmt)
+{
+	if (is_length_specifier(*(*fmt + 1)))
+	{
+		*fmt += 2;
+		if (*(*fmt - 2) == 'l' && *(*fmt - 1) == 'l')
+			return (LL);
+		else if (*(*fmt - 2) == 'h' && *(*fmt - 1) == 'h')
+			return (HH);
+		else
+		{
+			write(1, (*fmt - 2), 2);
+			ft_fatal("invalid length specifier");
+		}
+	}
+	*fmt += 1;
+	if (*(*fmt - 1) == 'l')
+		return (L);
+	else if (*(*fmt - 1) == 'h')
+		return (H);
+	else if (*(*fmt - 1) == 'j')
+		return (J);
+	else if (*(*fmt - 1) == 'z')
+		return (Z);
 	return (0);
 }
 
@@ -39,7 +66,7 @@ static int	parse_arg(char *fmt, void *arg)
 	while (*fmt && ft_isdigit(*fmt))
 		++fmt;
 	if (is_length_specifier(*fmt))
-		options.length = *fmt++;
+		options.length = get_length(&fmt);
 	ft_bzero(&options.arg, sizeof(long));
 	if (is_numeric_specifier(*fmt))
 	{

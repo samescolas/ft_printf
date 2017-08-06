@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 16:03:49 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 16:20:50 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,25 @@ void	ft_putnum(long long n, int base, char letter_case)
 		ft_putchar(buf[--i]);
 }
 
+size_t	convert_value(size_t n, t_length len, t_bool is_unsigned)
+{
+	if (len == HH)
+		return ((is_unsigned ? (unsigned char)n : (char)n));
+	else if (len == H)
+		return ((is_unsigned ? (unsigned short)n : (short)n));
+	else if (len == L)
+		return ((is_unsigned ? (unsigned long)n : (long)n));
+	else if (len == LL)
+		return ((is_unsigned ? (unsigned long long)n : (long long)n));
+	return (0);
+}
+
 int		print_hex_arg(t_argfmt arg)
 {
 	size_t	ret;
+	size_t	val;
 
+	val = convert_value(arg.arg.num_val, arg.length, 1);
 	if (arg.specifier == 'x')
 	{
 		if (arg.flag == '#')
@@ -49,8 +64,10 @@ int		print_hex_arg(t_argfmt arg)
 			write(1, "0x", 2);
 			ret = 2;
 		}
-		ft_putnum((unsigned int)arg.arg.num_val, 16, 'a');
-		return ((int)ft_numlen((unsigned int)arg.arg.num_val, 16));
+		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'a');
+		ft_putnum(val, 16, 'a');
+		return ((int)ft_numlen(val, 16));
+		//return ((int)ft_numlen((unsigned int)arg.arg.num_val, 16));
 	}
 	else
 	{
@@ -59,8 +76,10 @@ int		print_hex_arg(t_argfmt arg)
 			write(1, "0X", 2);
 			ret = 2;
 		}
-		ft_putnum((unsigned int)arg.arg.num_val, 16, 'A');
-		return (ft_numlen((unsigned int)arg.arg.num_val, 16));
+		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'A');
+		ft_putnum(val, 16, 'A');
+		return ((int)ft_numlen(val, 16));
+		//return (ft_numlen((unsigned int)arg.arg.num_val, 16));
 	}
 }
 
