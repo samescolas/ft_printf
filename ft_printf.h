@@ -3,6 +3,7 @@
 
 # include "libft.h"
 # include <stdarg.h>
+# include <sys/types.h>
 
 typedef union	e_arg
 {
@@ -28,5 +29,6 @@ int		is_numeric_specifier(char c);
 
 int		ftp_printnum(t_argfmt arg);
 void	ft_putnum(long long n, int base, char letter_case);
+size_t	ft_numlen(long long num, short base);
 
 #endif
