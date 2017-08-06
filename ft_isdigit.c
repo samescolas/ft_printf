@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 11:59:37 by sescolas         ###   ########.fr       */
+/*   Created: 2017/01/09 20:30:02 by sescolas          #+#    #+#             */
+/*   Updated: 2017/01/14 16:27:00 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+int		ft_isdigit(int n)
 {
-	printf("test %2d\n", 42000);
-	ft_printf("test %-2d\n", 42000);
+	return (n >= '0' && n <= '9');
 }

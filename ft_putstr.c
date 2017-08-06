@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 11:59:37 by sescolas         ###   ########.fr       */
+/*   Created: 2017/01/13 10:21:35 by sescolas          #+#    #+#             */
+/*   Updated: 2017/01/20 10:34:31 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+void	ft_putstr(const char *str)
 {
-	printf("test %2d\n", 42000);
-	ft_printf("test %-2d\n", 42000);
+	if (str)
+		write(1, str, ft_strlen(str));
 }

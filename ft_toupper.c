@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 11:59:37 by sescolas         ###   ########.fr       */
+/*   Created: 2017/01/08 18:50:35 by sescolas          #+#    #+#             */
+/*   Updated: 2017/01/20 10:50:15 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+int		ft_toupper(int c)
 {
-	printf("test %2d\n", 42000);
-	ft_printf("test %-2d\n", 42000);
+	return ((c >= 'a' && c <= 'z') ? c - 32 : c);
 }

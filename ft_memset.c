@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 11:59:37 by sescolas         ###   ########.fr       */
+/*   Created: 2017/01/08 19:40:03 by sescolas          #+#    #+#             */
+/*   Updated: 2017/01/20 10:32:39 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	printf("test %2d\n", 42000);
-	ft_printf("test %-2d\n", 42000);
+	void	*ret;
+
+	ret = b;
+	while (len > 0)
+	{
+		*(unsigned char *)b = (unsigned char)c;
+		b += 1;
+		--len;
+	}
+	return (ret);
 }
