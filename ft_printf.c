@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 12:02:25 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 13:35:57 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	parse_arg(char *fmt, void *arg)
 {
 	t_argfmt	options;
 	long		*num;
+
 	ft_bzero(&options, sizeof(options));
 	options.flag = (is_flag(*fmt) ? *fmt++ : '\0');
 	options.width = ft_atoi(fmt);
@@ -47,12 +48,16 @@ static int	parse_arg(char *fmt, void *arg)
 	}
 	else if (*fmt == 's')
 		options.arg.str_val = (char *)arg;
-	else
-		return (-1);
 	options.specifier = *fmt;
 	return (print_arg(options));
 }
-
+/*
+int		ft_printf(const char *fmt, ...)
+{
+	va_list		al;
+	t_argfmt	arg;
+}
+*/
 int		ft_printf(const char *fmt, ... )
 {
 	va_list	a_list;

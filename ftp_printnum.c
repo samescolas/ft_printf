@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 11:59:05 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 15:20:09 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,46 @@ void	ft_putnum(long long n, int base, char letter_case)
 
 int		ftp_printnum(t_argfmt arg)
 {
+	size_t	ret;
+
+	ret = 0;
 	if (arg.specifier == 'd' || arg.specifier == 'i')
-		ft_putnum(arg.arg.num_val, 10, 0);
+		ft_putnum((int)arg.arg.num_val, 10, 0);
 	else if (arg.specifier == 'x')
+	{
+		if (arg.flag == '#')
+		{
+			write(1, "0x", 2);
+			ret = 2;
+		}
 		ft_putnum(arg.arg.num_val, 16, 'a');
+	}
 	else if (arg.specifier == 'X')
+	{
+		if (arg.flag == '#')
+		{
+			write(1, "0X", 2);
+			ret = 2;
+		}
 		ft_putnum(arg.arg.num_val, 16, 'A');
+	}
 	else if (arg.specifier == 'o')
+	{
+		if (arg.flag == '#')
+		{
+			write(1, "0", 1);
+			ret = 1;
+		}
 		ft_putnum(arg.arg.num_val, 8, 'a');
+	}
 	else if (arg.specifier == 'O')
+	{
+		if (arg.flag == '#')
+		{
+			write(1, "0", 1);
+			ret = 1;
+		}
 		ft_putnum(arg.arg.num_val, 8, 'A');
-	return (0);
+	}
+	return (ret);
 }
