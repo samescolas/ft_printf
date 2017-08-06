@@ -24,5 +24,6 @@ int		is_length_specifier(char c);
 int		is_numeric_specifier(char c);
 
 int		ftp_printnum(t_argfmt arg);
+void	ft_putnum(long long n, int base, char letter_case);
 
 #endif

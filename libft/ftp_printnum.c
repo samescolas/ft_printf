@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/05 17:24:01 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 11:35:44 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,17 @@ void	ft_putnum(long long n, int base, char letter_case)
 		ft_putchar(buf[--i]);
 }
 
-int		ft_printnum(t_argfmt arg)
+int		ftp_printnum(t_argfmt arg)
 {
 	if (arg.specifier == 'd' || arg.specifier == 'i')
-		ft_putnum(arg.num_val, 10, 0);
+		ft_putnum(arg.arg.num_val, 10, 0);
 	else if (arg.specifier == 'x')
-		ft_putnum(arg.num_val, 16, 'a');
+		ft_putnum(arg.arg.num_val, 16, 'a');
 	else if (arg.specifier == 'X')
-		ft_putnum(arg.num_val, 16, 'A');
+		ft_putnum(arg.arg.num_val, 16, 'A');
 	else if (arg.specifier == 'o')
-		ft_putnum(arg.num_val, 8, 'a');
+		ft_putnum(arg.arg.num_val, 8, 'a');
 	else if (arg.specifier == 'O')
-		ft_putnum(arg.num_val, 8, 'A');
+		ft_putnum(arg.arg.num_val, 8, 'A');
+	return (0);
 }

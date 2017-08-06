@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_numbers.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/05 16:56:42 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/05 16:57:02 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/06 11:42:53 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 #include "libft.h"
 
-void	ft_putnum(long n, char b)
-{}
+int		main(void)
+{
+	printf("test %2d\n", 42000);
+	ft_printf("test %-2d\n", 42000);
+}

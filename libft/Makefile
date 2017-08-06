@@ -6,13 +6,13 @@
 #    By: sescolas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/13 09:59:58 by sescolas          #+#    #+#              #
-#    Updated: 2017/08/05 16:39:41 by sescolas         ###   ########.fr        #
+#    Updated: 2017/08/06 11:34:37 by sescolas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-HEADER = libft.h
+HEADER = libft.h ft_printf.h
 
 SRCS = 	$(wildcard *.c)
 
@@ -24,8 +24,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADER)
-	ar rc $@ *.o
-	ranlib $@
+	@ar rc $@ *.o
 
 $(OBJS): $(SRCS) $(HEADER)
 	@if [ $@ =  "ft_fatal.o" ]; then \

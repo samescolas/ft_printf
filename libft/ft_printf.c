@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/05 17:26:01 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 11:37:32 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-*/
 
 void	ft_putnum(long n, char b)
 {
@@ -58,6 +57,7 @@ void	ft_putnum(long n, char b)
 	while (i)
 		ft_putchar(buf[--i]);
 }
+*/
 
 static int	print_arg(t_argfmt arg)
 {
@@ -82,17 +82,7 @@ static int	print_arg(t_argfmt arg)
 		return (ft_strlen(arg.arg.str_val));
 	}
 	else if (is_numeric_specifier(arg.specifier))
-		return (ft_printnum(arg));
-	else if (ft_toupper(arg.specifier) == 'D')
-	{
-		ft_putnum(arg.arg.num_val, arg.length == 'l' ? '\0' : arg.specifier);
-		return (ft_numlen(arg.arg.num_val, 10));
-	}
-	else if (ft_toupper(arg.specifier) == 'X')
-	{
-		ft_putnum(arg.arg.num_val, arg.specifier);
-		return (ft_numlen(arg.arg.num_val, 16));
-	}
+		return (ftp_printnum(arg));
 	return (0);
 }
 
