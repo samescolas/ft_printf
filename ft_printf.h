@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 21:00:26 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 22:55:17 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,21 @@ typedef struct	s_argfmt
 
 int				ft_printf(const char *fmt, ...);
 
+size_t			ft_padnbr(t_argfmt arg, int written);
+
 int				is_flag(char c);
 int				is_length_specifier(char c);
+int				is_specifier(char c);
 int				is_numeric_specifier(char c);
+int				get_base(char c);
 
 void			ftp_parse_flags(t_flags *flags, char **fmt);
 
 int				ftp_printnum(t_argfmt arg);
-void			ft_putnum(long long n, int base, char letter_case);
+void			ft_putnum(long long n, int base, char letter_case, long precision);
 size_t			ft_numlen(long long num, short base);
+
+size_t			convert_value(size_t n, t_length len, t_bool is_unsigned);
 
 void			ft_fatal(char *err_msg);
 

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 18:16:08 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 22:47:36 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,35 +83,17 @@ static int	parse_arg(char **fmt, void *arg)
 	++(*fmt);
 	return (print_arg(options));
 }
-/*
-static int	parse_arg(char *fmt, void *arg)
-{
-	t_argfmt	options;
-	long		*num;
 
-	ft_bzero(&options, sizeof(options));
-	options.flag = (is_flag(*fmt) ? *fmt++ : '\0');
-	options.width = ft_atoi(fmt);
-	while (*fmt && ft_isdigit(*fmt))
-		++fmt;
-	if (*fmt == '.')
-		options.precision = ft_atoi(++fmt);
-	while (*fmt && ft_isdigit(*fmt))
-		++fmt;
-	if (is_length_specifier(*fmt))
-		options.length = get_length(&fmt, &options);
-	ft_bzero(&options.arg, sizeof(long));
-	if (is_numeric_specifier(*fmt))
-	{
-		num = (long *)arg;
-		options.arg.num_val = *num;
-	}
-	else if (*fmt == 's')
-		options.arg.str_val = (char *)arg;
-	options.specifier = *fmt;
-	return (print_arg(options));
+char	get_specifier(char *fmt)
+{
+	char	*ptr;
+
+	ptr = fmt;
+	while (*ptr && !is_specifier(*ptr))
+		++ptr;
+	return (*ptr);
 }
-*/
+
 int		ft_printf(const char *fmt, ...)
 {
 	va_list	a_list;
@@ -132,10 +114,10 @@ int		ft_printf(const char *fmt, ...)
 				fmt += 2;
 				chars_printed += 1;
 			}
-			else if (*(fmt + 1) && is_numeric_specifier(*(fmt + 1)))
+			else if (*(fmt + 1) && is_numeric_specifier(get_specifier((char *)fmt)))
 			{
-				num = va_arg(a_list, long);
-				chars_printed += parse_arg((char **)&fmt, (void *)&num);
+				num = va_arg(a_list, size_t);
+				chars_printed += parse_arg((char **)&fmt, &num);
 			}
 			else if (*(fmt + 1))
 			{

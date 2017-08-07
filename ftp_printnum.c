@@ -6,15 +6,16 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 17:54:16 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 23:21:21 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnum(long long n, int base, char letter_case)
+void	ft_putnum(long long n, int base, char letter_case, long width)
 {
 	int		i;
+	int		chars_printed;
 	char	buf[32];
 
 	if (n < 0)
@@ -34,25 +35,9 @@ void	ft_putnum(long long n, int base, char letter_case)
 		else
 			buf[i++] = (n % base) - 10 + letter_case;
 	}
-	while (i)
-		ft_putchar(buf[--i]);
-}
-
-size_t	convert_value(size_t n, t_length len, t_bool is_unsigned)
-{
-	if (len == HH)
-		return ((is_unsigned ? (unsigned char)n : (char)n));
-	else if (len == H)
-		return ((is_unsigned ? (unsigned short)n : (short)n));
-	else if (len == L)
-		return ((is_unsigned ? (unsigned long)n : (long)n));
-	else if (len == LL)
-		return ((is_unsigned ? (unsigned long long)n : (long long)n));
-	else if (len == J)
-		return ((is_unsigned ? (uintmax_t)n : (intmax_t)n));
-	else if (len == Z)
-		return ((size_t)n);
-	return (0);
+	chars_printed = 0;
+	while (chars_printed < i && (chars_printed < width || width <= 0))
+		ft_putchar(buf[i - (++chars_printed)]);
 }
 
 int		print_hex_arg(t_argfmt arg)
@@ -65,30 +50,34 @@ int		print_hex_arg(t_argfmt arg)
 		val = convert_value(arg.arg.num_val, arg.length, 1);
 	else
 		val = (unsigned int)arg.arg.num_val;
-	if (arg.specifier == 'x')
+	if (arg.flags.special)
 	{
-		if (arg.flags.special)
-		{
-			write(1, "0x", 2);
-			ret = 2;
-		}
-		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'a');
-		ft_putnum(val, 16, 'a');
-		return ((int)ft_numlen(val, 16) + ret);
-		//return ((int)ft_numlen((unsigned int)arg.arg.num_val, 16));
+		write(1, (arg.specifier == 'x' ? "0x" : "0X"), 2);
+		ret = 2;
 	}
+	arg.arg.num_val = val;
+	return ((int)ft_numlen(val, 16) + ft_padnbr(arg, ret) + ret);
+}
+
+int		print_digit_arg(t_argfmt arg, char *prefix)
+{
+	size_t	ret;
+	size_t	val;
+	int		base;
+
+	ret = 0;
+	base = get_base(arg.specifier);
+	if (arg.length_specified)
+		val = convert_value(arg.arg.num_val, arg.length, 1);
 	else
-	{
-		if (arg.flags.special)
-		{
-			write(1, "0X", 2);
-			ret = 2;
-		}
-		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'A');
-		ft_putnum(val, 16, 'A');
-		return ((int)ft_numlen(val, 16) + ret);
-		//return (ft_numlen((unsigned int)arg.arg.num_val, 16));
-	}
+		val = (int)arg.arg.num_val;
+	if (prefix != (void *)0)
+		write(1, prefix, (ret = ft_strlen(prefix)));
+	//if ((offset = arg.precision - ft_numlen(val, 10)) > 0)
+		//while (offset--)
+			//write((++ret != 0), "0" , 1);
+	arg.arg.num_val = val;
+	return ((int)ft_numlen(val, base) + ft_padnbr(arg, ret) + ret);
 }
 
 int		ftp_printnum(t_argfmt arg)
@@ -97,12 +86,11 @@ int		ftp_printnum(t_argfmt arg)
 
 	ret = 0;
 	if (arg.specifier == 'd' || arg.specifier == 'i')
-	{
-		ft_putnum((int)arg.arg.num_val, 10, 0);
-		return ((int)ft_numlen((int)arg.arg.num_val, 10));
-	}
-	else if (arg.specifier == 'x' || arg.specifier == 'X')
-		return (print_hex_arg(arg));
+		return (print_digit_arg(arg, (void *)0));
+	else if (arg.specifier == 'x')
+		return (print_digit_arg(arg, arg.flags.special ? "0x" : (void *)0));
+	else if (arg.specifier == 'X')
+		return (print_digit_arg(arg, arg.flags.special ? "0X" : (void *)0));
 	else if (arg.specifier == 'o')
 	{
 		if (arg.flags.special)
@@ -110,7 +98,7 @@ int		ftp_printnum(t_argfmt arg)
 			write(1, "0", 1);
 			ret = 1;
 		}
-		ft_putnum(arg.arg.num_val, 8, 'a');
+		ft_putnum(arg.arg.num_val, 8, 'a', 0);
 		return ((int)ft_numlen(arg.arg.num_val, 8) + ret);
 	}
 	else if (arg.specifier == 'O')
@@ -120,7 +108,7 @@ int		ftp_printnum(t_argfmt arg)
 			write(1, "0", 1);
 			ret = 1;
 		}
-		ft_putnum(arg.arg.num_val, 8, 'A');
+		ft_putnum(arg.arg.num_val, 8, 'A', 0);
 		return ((int)ft_numlen(arg.arg.num_val, 8) + ret);
 	}
 	return (ret);
