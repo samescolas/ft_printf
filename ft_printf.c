@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:59:05 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 14:35:46 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static int	print_parsed_arg(t_argfmt arg)
 
 static int	print_arg(char **fmt, void *arg)
 {
-	size_t	num;
-	char	*str;
+	intmax_t	num;
+	char		*str;
 
 	if (*(*fmt + 1) && is_numeric_specifier(get_specifier(*fmt)))
 	{
-		num = (size_t)arg;
+		num = (intmax_t)arg;
 		return (print_parsed_arg(parse_arg(fmt, &num)));
 	}
 	else if (*(*fmt + 1))

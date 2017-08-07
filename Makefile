@@ -6,7 +6,7 @@
 #    By: sescolas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/13 09:59:58 by sescolas          #+#    #+#              #
-#    Updated: 2017/08/07 10:58:54 by sescolas         ###   ########.fr        #
+#    Updated: 2017/08/07 14:37:17 by sescolas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ print:
 clean:
 	rm -f *.o$
 	rm -f libft/*.o$
+	rm -f libft/libft.a
 
 fclean: clean
 	rm -f $(NAME)

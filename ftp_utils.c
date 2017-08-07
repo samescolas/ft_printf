@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:10:57 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 14:04:18 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ char	get_specifier(char *fmt)
 
 int		get_base(char specifier)
 {
-	if (specifier == 'd' || specifier == 'i')
+	specifier = ft_toupper(specifier);
+	if (specifier == 'D' || specifier == 'I' || specifier == 'U')
 		return (10);
-	else if (specifier == 'x' || specifier == 'X')
+	else if (specifier == 'X')
 		return (16);
-	else if (specifier == 'o' || specifier == 'O')
+	else if (specifier == 'O')
 		return (8);
 	else
-		return (0);
+		return (1);
 }

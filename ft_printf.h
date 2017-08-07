@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 12:08:34 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 14:34:52 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef enum	e_length
 
 typedef union	u_arg
 {
-	size_t		num_val;
+	intmax_t	num_val;
 	char		*str_val;
 }				t_arg;
 
@@ -72,7 +72,7 @@ char			get_specifier(char *fmt);
 void			ftp_parse_flags(t_flags *flags, char **fmt);
 
 int				ftp_printnum(t_argfmt arg);
-void			ft_putnum(long long n, int base, char letter_case, long precision);
+void			ft_putnum(long long n, int base, char letter_case);
 size_t			ft_numlen(long long num, short base);
 
 size_t			convert_value(size_t n, t_length len, char specifier);
