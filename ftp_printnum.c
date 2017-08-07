@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 23:21:21 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 12:17:37 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,22 @@ int		print_hex_arg(t_argfmt arg)
 int		print_digit_arg(t_argfmt arg, char *prefix)
 {
 	size_t	ret;
-	size_t	val;
+	int		offset;
 	int		base;
 
 	ret = 0;
 	base = get_base(arg.specifier);
 	if (arg.length_specified)
-		val = convert_value(arg.arg.num_val, arg.length, 1);
+		arg.arg.num_val = convert_value(arg.arg.num_val, arg.length, arg.specifier);
+	else if (is_signed_specifier(arg.specifier))
+		arg.arg.num_val = (int)arg.arg.num_val;
 	else
-		val = (int)arg.arg.num_val;
+		arg.arg.num_val = (unsigned int)arg.arg.num_val;
 	if (prefix != (void *)0)
 		write(1, prefix, (ret = ft_strlen(prefix)));
-	//if ((offset = arg.precision - ft_numlen(val, 10)) > 0)
-		//while (offset--)
-			//write((++ret != 0), "0" , 1);
-	arg.arg.num_val = val;
+	if ((offset = arg.precision - ft_numlen(val, 10)) > 0)
+		while (offset--)
+			write((++ret != 0), "0" , 1);
 	return ((int)ft_numlen(val, base) + ft_padnbr(arg, ret) + ret);
 }
 

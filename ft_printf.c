@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:36:23 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 11:59:05 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ static int	print_parsed_arg(t_argfmt arg)
 	}
 	else if (is_numeric_specifier(arg.specifier))
 		return (ftp_printnum(arg));
-	return (0);
-}
-
-static	int	is_double_percent(char **fmt, size_t *chars_printed)
-{
-	if (*(*fmt + 1) && *(*fmt + 1) == '%')
-	{
-		ft_putchar('%');
-		*fmt += 2;
-		*chars_printed += 1;
-		return (1);
-	}
 	return (0);
 }
 
@@ -54,6 +42,18 @@ static int	print_arg(char **fmt, void *arg)
 	return (0);
 }
 
+static	int	is_double_percent(char **fmt, size_t *chars_printed)
+{
+	if (*(*fmt + 1) && *(*fmt + 1) == '%')
+	{
+		ft_putchar('%');
+		*fmt += 2;
+		*chars_printed += 1;
+		return (1);
+	}
+	return (0);
+}
+
 int			ft_printf(const char *fmt, ...)
 {
 	va_list	a_list;
@@ -65,7 +65,7 @@ int			ft_printf(const char *fmt, ...)
 	{
 		if (*fmt == '%' && !is_double_percent((char **)&fmt, &chars_printed))
 			chars_printed += print_arg((char **)&fmt, va_arg(a_list, void*));
-		else
+		else if (*fmt)
 			write(++chars_printed != 0, fmt++, 1);
 	}
 	return (chars_printed);

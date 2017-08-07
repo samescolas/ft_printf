@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 16:31:06 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:09:35 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 12:09:24 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int		is_flag(char c)
 int		is_length_specifier(char c)
 {
 	if (c == 'h' || c == 'l' || c == 'L' || c == 'j' || c == 'z')
+		return (1);
+	return (0);
+}
+
+int		is_signed_specifier(char c)
+{
+	if (ft_toupper(c) != 'X' && ft_toupper(c) != 'U' &&
+			ft_toupper(c) != 'O')
 		return (1);
 	return (0);
 }

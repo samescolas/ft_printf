@@ -6,14 +6,17 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 21:23:46 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 21:24:10 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 12:16:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	convert_value(size_t n, t_length len, t_bool is_unsigned)
+size_t	convert_value(size_t n, t_length len, char specifier)
 {
+	t_bool	is_unsigned;
+
+	is_unsigned = !is_signed_specifier(specifier);
 	if (len == HH)
 		return ((is_unsigned ? (unsigned char)n : (char)n));
 	else if (len == H)

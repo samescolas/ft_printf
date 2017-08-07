@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:14:42 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 12:08:34 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ size_t			ft_padnbr(t_argfmt arg, int written);
 int				is_flag(char c);
 int				is_length_specifier(char c);
 int				is_specifier(char c);
+int				is_signed_specifier(char c);
 int				is_numeric_specifier(char c);
 int				get_base(char c);
 char			get_specifier(char *fmt);
@@ -74,7 +75,7 @@ int				ftp_printnum(t_argfmt arg);
 void			ft_putnum(long long n, int base, char letter_case, long precision);
 size_t			ft_numlen(long long num, short base);
 
-size_t			convert_value(size_t n, t_length len, t_bool is_unsigned);
+size_t			convert_value(size_t n, t_length len, char specifier);
 
 void			ft_fatal(char *err_msg);
 
