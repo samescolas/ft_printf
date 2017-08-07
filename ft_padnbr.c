@@ -6,12 +6,11 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 11:55:58 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 23:07:54 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 11:07:07 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 static void	ft_putnbr_base(long long n, size_t base, char b)
 {

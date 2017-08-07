@@ -6,14 +6,14 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 22:55:17 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 11:14:42 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <sys/types.h>
 
@@ -57,6 +57,8 @@ typedef struct	s_argfmt
 
 int				ft_printf(const char *fmt, ...);
 
+t_argfmt		parse_arg(char **fmt, void *arg);
+
 size_t			ft_padnbr(t_argfmt arg, int written);
 
 int				is_flag(char c);
@@ -64,6 +66,7 @@ int				is_length_specifier(char c);
 int				is_specifier(char c);
 int				is_numeric_specifier(char c);
 int				get_base(char c);
+char			get_specifier(char *fmt);
 
 void			ftp_parse_flags(t_flags *flags, char **fmt);
 

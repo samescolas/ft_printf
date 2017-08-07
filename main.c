@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 22:44:03 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 10:47:58 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		main(void)
 	printf("%%X: %X\n", 42);
 	printf("%%c: %c\n", 'a');
 	printf("%%C: %C\n", 420);
+	printf("%%zd%%zd: %zd%zd\n", 42, 0);
 	ft_putstr("----------------------\n");
 	ft_putstr("----------------------\n");
 	ft_putstr("\tFT_PRINTF\n");
@@ -57,4 +58,5 @@ int		main(void)
 	ft_printf("%%X: %X\n", 42);
 	ft_printf("%%c: %c\n", 'a');
 	ft_printf("%%C: %C\n", 420);
+	ft_printf("%%zd%%zd: %zd%zd\n", 42, 0);
 }

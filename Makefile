@@ -6,7 +6,7 @@
 #    By: sescolas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/13 09:59:58 by sescolas          #+#    #+#              #
-#    Updated: 2017/08/06 11:58:32 by sescolas         ###   ########.fr        #
+#    Updated: 2017/08/07 10:58:54 by sescolas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libftprintf.a
 HEADER = ft_printf.h
 
 SRCS = 	$(shell ls *.c)
+SRCS += $(shell ls libft/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,19 +25,19 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADER)
-	@ar rc $@ *.o
+	@ar rc $@ $(OBJS)
 
 $(OBJS): $(SRCS) $(HEADER)
-	@if [ $@ =  "ft_fatal.o" ]; then \
-		$(CC) $(CFLAGS) -I ../includes -c $(subst .o,.c,$@) -o $@; \
-	else \
-		$(CC) $(CFLAGS) -c $(subst .o,.c,$@) -o $@; \
-	fi;
+	$(CC) $(CFLAGS) -c $(subst .o,.c,$@) -o $@
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re print
+
+print:
+	@echo $(SRCS)
 
 clean:
-	rm -f *.o
+	rm -f *.o$
+	rm -f libft/*.o$
 
 fclean: clean
 	rm -f $(NAME)
