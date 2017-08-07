@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 17:07:49 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 17:54:16 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		print_hex_arg(t_argfmt arg)
 		val = (unsigned int)arg.arg.num_val;
 	if (arg.specifier == 'x')
 	{
-		if (arg.flag == '#')
+		if (arg.flags.special)
 		{
 			write(1, "0x", 2);
 			ret = 2;
@@ -79,7 +79,7 @@ int		print_hex_arg(t_argfmt arg)
 	}
 	else
 	{
-		if (arg.flag == '#')
+		if (arg.flags.special)
 		{
 			write(1, "0X", 2);
 			ret = 2;
@@ -105,7 +105,7 @@ int		ftp_printnum(t_argfmt arg)
 		return (print_hex_arg(arg));
 	else if (arg.specifier == 'o')
 	{
-		if (arg.flag == '#')
+		if (arg.flags.special)
 		{
 			write(1, "0", 1);
 			ret = 1;
@@ -115,7 +115,7 @@ int		ftp_printnum(t_argfmt arg)
 	}
 	else if (arg.specifier == 'O')
 	{
-		if (arg.flag == '#')
+		if (arg.flags.special)
 		{
 			write(1, "0", 1);
 			ret = 1;
