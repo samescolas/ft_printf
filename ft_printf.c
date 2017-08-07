@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 16:34:29 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 16:44:22 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static int	print_arg(t_argfmt arg)
 	return (0);
 }
 
-t_length	get_length(char **fmt)
+t_length	get_length(char **fmt, t_argfmt *options)
 {
+	options->length_specified = 1;
 	if (is_length_specifier(*(*fmt + 1)))
 	{
 		*fmt += 2;
@@ -66,7 +67,7 @@ static int	parse_arg(char *fmt, void *arg)
 	while (*fmt && ft_isdigit(*fmt))
 		++fmt;
 	if (is_length_specifier(*fmt))
-		options.length = get_length(&fmt);
+		options.length = get_length(&fmt, &options);
 	ft_bzero(&options.arg, sizeof(long));
 	if (is_numeric_specifier(*fmt))
 	{

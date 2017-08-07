@@ -29,6 +29,7 @@ typedef struct	s_argfmt
 	long		width;
 	long		precision;
 	t_length	length;
+	t_bool		length_specified;
 	char		specifier;
 	t_arg		arg;
 }				t_argfmt;

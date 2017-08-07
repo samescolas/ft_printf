@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 16:20:50 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/06 17:07:49 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ size_t	convert_value(size_t n, t_length len, t_bool is_unsigned)
 		return ((is_unsigned ? (unsigned long)n : (long)n));
 	else if (len == LL)
 		return ((is_unsigned ? (unsigned long long)n : (long long)n));
+	else if (len == J)
+		return ((is_unsigned ? (uintmax_t)n : (intmax_t)n));
+	else if (len == Z)
+		return ((size_t)n);
 	return (0);
 }
 
@@ -56,7 +60,11 @@ int		print_hex_arg(t_argfmt arg)
 	size_t	ret;
 	size_t	val;
 
-	val = convert_value(arg.arg.num_val, arg.length, 1);
+	ret = 0;
+	if (arg.length_specified)
+		val = convert_value(arg.arg.num_val, arg.length, 1);
+	else
+		val = (unsigned int)arg.arg.num_val;
 	if (arg.specifier == 'x')
 	{
 		if (arg.flag == '#')
@@ -66,7 +74,7 @@ int		print_hex_arg(t_argfmt arg)
 		}
 		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'a');
 		ft_putnum(val, 16, 'a');
-		return ((int)ft_numlen(val, 16));
+		return ((int)ft_numlen(val, 16) + ret);
 		//return ((int)ft_numlen((unsigned int)arg.arg.num_val, 16));
 	}
 	else
@@ -78,7 +86,7 @@ int		print_hex_arg(t_argfmt arg)
 		}
 		//ft_putnum((unsigned int)arg.arg.num_val, 16, 'A');
 		ft_putnum(val, 16, 'A');
-		return ((int)ft_numlen(val, 16));
+		return ((int)ft_numlen(val, 16) + ret);
 		//return (ft_numlen((unsigned int)arg.arg.num_val, 16));
 	}
 }
@@ -103,7 +111,7 @@ int		ftp_printnum(t_argfmt arg)
 			ret = 1;
 		}
 		ft_putnum(arg.arg.num_val, 8, 'a');
-		return ((int)ft_numlen(arg.arg.num_val, 8));
+		return ((int)ft_numlen(arg.arg.num_val, 8) + ret);
 	}
 	else if (arg.specifier == 'O')
 	{
@@ -113,7 +121,7 @@ int		ftp_printnum(t_argfmt arg)
 			ret = 1;
 		}
 		ft_putnum(arg.arg.num_val, 8, 'A');
-		return ((int)ft_numlen(arg.arg.num_val, 8));
+		return ((int)ft_numlen(arg.arg.num_val, 8) + ret);
 	}
 	return (ret);
 }
