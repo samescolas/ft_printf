@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 16:00:43 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:28:32 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,25 @@ static int	print_parsed_arg(t_argfmt arg)
 
 static int	print_arg(char **fmt, void *arg)
 {
-	intmax_t	num;
+	ssize_t		num;
 	char		*str;
 
 	str = (void *)0;
 	if (*(*fmt + 1) && is_numeric_specifier(get_specifier(*fmt)))
 	{
-		num = (intmax_t)arg;
+		num = (ssize_t)arg;
+		ft_putstr("in print_arg: ");
+		ft_putnbr(num);
+		ft_putendl("");
 		return (print_parsed_arg(parse_arg(fmt, &num)));
 	}
 	else if (*(*fmt + 1))
 	{
 		str = (char *)arg;
-		return (print_parsed_arg(parse_arg(fmt, str)));
+		if (str)
+			return (print_parsed_arg(parse_arg(fmt, str)));
+		else
+			return (write(1, "(null)", 6));
 	}
 	return (0);
 }
@@ -55,6 +61,17 @@ static	int	is_double_percent(char **fmt, size_t *chars_printed)
 	return (0);
 }
 
+static int	get_arg(char *fmt, va_list arg)
+{
+	char	specifier;
+
+	specifier = get_specifier(*fmt);
+}
+
+int			ft_printf(const char *fmt, ...)
+{
+}
+
 int			ft_printf(const char *fmt, ...)
 {
 	va_list	a_list;
@@ -65,7 +82,7 @@ int			ft_printf(const char *fmt, ...)
 	while (*fmt)
 	{
 		if (*fmt == '%' && !is_double_percent((char **)&fmt, &chars_printed))
-			chars_printed += print_arg((char **)&fmt, va_arg(a_list, void*));
+			chars_printed += print_arg((char **)&fmt,  va_arg(a_list, void*));
 		else if (*fmt)
 			write(++chars_printed != 0, fmt++, 1);
 	}

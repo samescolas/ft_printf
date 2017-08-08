@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 17:01:37 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:07:08 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef enum	e_length
 
 typedef union	u_arg
 {
-	intmax_t	num_val;
+	ssize_t		num_val;
 	char		*str_val;
 }				t_arg;
 
@@ -49,6 +49,7 @@ typedef struct	s_argfmt
 	t_flags		flags;
 	long		width;
 	long		precision;
+	t_bool		precision_specified;
 	t_length	length;
 	t_bool		length_specified;
 	char		specifier;
@@ -58,6 +59,9 @@ typedef struct	s_argfmt
 int				ft_printf(const char *fmt, ...);
 
 t_argfmt		parse_arg(char **fmt, void *arg);
+
+int				ftp_lpad(t_argfmt arg, int arg_len);
+int				ftp_rpad(t_argfmt arg, int arg_len);
 
 size_t			ft_padnbr(t_argfmt arg, int written);
 
@@ -73,10 +77,10 @@ char			get_specifier(char *fmt);
 void			ftp_parse_flags(t_flags *flags, char **fmt);
 
 int				ftp_printnum(t_argfmt arg);
-void			ft_putnum(long long n, int base, char letter_case);
+void			ft_putnum(ssize_t n, int base, char letter_case);
 size_t			ft_numlen(long long num, short base);
 
-intmax_t		convert_fmt(t_argfmt arg);
+intmax_t		convert_fmt(t_argfmt arg, void *n);
 
 void			ft_fatal(char *err_msg);
 

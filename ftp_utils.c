@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 17:07:05 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/08 12:39:18 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,29 @@
 int		get_arglen(t_argfmt arg)
 {
 	int		ret;
+	int		add;
 
 	if (ft_toupper(arg.specifier) == 'C')
 		return (1);
 	else if (is_numeric_specifier(arg.specifier))
-		ret = ft_numlen(arg.arg.num_val, get_base(arg.specifier));
+		return (ft_numlen(arg.arg.num_val, get_base(arg.specifier))
+														- (arg.arg.num_val < 0));
 	else if (arg.specifier == 'S')
-		return (0); /* need a strlen for wchar_t or something...? */
+		return (0); /* need a wchar_t length thingy? */
 	else
 		return (ft_strlen(arg.arg.str_val));
-	if (arg.flags.special && (
+	add = 0;
+	if (arg.flags.special && arg.arg.num_val > 0 && (
 		ft_toupper(arg.specifier) == 'O' || ft_toupper(arg.specifier) == 'X'))
-		ret += 1 + (ft_toupper(arg.specifier) == 'X');
-	return (ret);
+		add += 1 + (ft_toupper(arg.specifier) == 'X');
+	if (arg.flags.show_sign && is_numeric_specifier(arg.specifier) &&
+					ft_toupper(arg.specifier) != 'U' && arg.arg.num_val > 0)
+		add += 1;
+	else if (arg.flags.space)
+		add += 1;
+	if (arg.precision > 0 && arg.precision < ret + add)
+		return (arg.precision);
+	return (ret + add);
 }
 
 char	get_specifier(char *fmt)

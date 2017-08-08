@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:24:45 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 11:06:40 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:41:46 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int					ft_putchar(int c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(const char *s);
 void				ft_putendl_fd(const char *s, int fd);
-void				ft_putnbr(int n);
+void				ft_putnbr(ssize_t n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_padstr(const char *s, int offset, char *color);
 void				ft_putstr(const char *s);
