@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 14:35:46 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 16:00:43 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	print_arg(char **fmt, void *arg)
 	intmax_t	num;
 	char		*str;
 
+	str = (void *)0;
 	if (*(*fmt + 1) && is_numeric_specifier(get_specifier(*fmt)))
 	{
 		num = (intmax_t)arg;

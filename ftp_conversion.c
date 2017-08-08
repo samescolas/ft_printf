@@ -6,13 +6,13 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 21:23:46 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 12:39:48 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/07 17:00:48 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	convert_value(size_t n, t_length len, char specifier)
+intmax_t	convert_value(intmax_t n, t_length len, char specifier)
 {
 	t_bool	is_unsigned;
 
@@ -30,4 +30,16 @@ size_t	convert_value(size_t n, t_length len, char specifier)
 	else if (len == Z)
 		return ((size_t)n);
 	return (0);
+}
+
+intmax_t	convert_fmt(t_argfmt arg)
+{
+	if (arg.length_specified)
+		return (convert_value(arg.arg.num_val, arg.length, arg.specifier));
+	else if (is_signed_specifier(arg.specifier) || arg.specifier == 'C')
+		return ((int)arg.arg.num_val);
+	else if (arg.specifier == 'c')
+		return ((char)arg.arg.num_val);
+	else
+		return ((unsigned int)arg.arg.num_val);
 }
