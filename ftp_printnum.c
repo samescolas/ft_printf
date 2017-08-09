@@ -6,12 +6,12 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:06:16 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 16:02:38 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 09:45:29 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 static int	ftp_print_special(t_argfmt arg)
 {
 	if (arg.arg.num_val == 0 || !arg.flags.special)
@@ -85,3 +85,4 @@ int		ftp_printnum(t_argfmt arg)
 	ret += ftp_rpad(arg, get_arglen(arg));
 	return (ret);
 }
+*/

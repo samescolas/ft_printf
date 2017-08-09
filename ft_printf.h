@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 16:07:08 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 09:19:16 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ typedef enum	e_length
 	Z
 }				t_length;
 
-typedef union	u_arg
-{
-	ssize_t		num_val;
-	char		*str_val;
-}				t_arg;
-
 typedef struct	s_flags
 {
 	t_bool		special;
@@ -53,7 +47,7 @@ typedef struct	s_argfmt
 	t_length	length;
 	t_bool		length_specified;
 	char		specifier;
-	t_arg		arg;
+	char		*formatted;
 }				t_argfmt;
 
 int				ft_printf(const char *fmt, ...);

@@ -6,12 +6,13 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 12:39:18 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 09:45:54 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
 int		get_arglen(t_argfmt arg)
 {
 	int		ret;
@@ -23,7 +24,7 @@ int		get_arglen(t_argfmt arg)
 		return (ft_numlen(arg.arg.num_val, get_base(arg.specifier))
 														- (arg.arg.num_val < 0));
 	else if (arg.specifier == 'S')
-		return (0); /* need a wchar_t length thingy? */
+		return (0);
 	else
 		return (ft_strlen(arg.arg.str_val));
 	add = 0;
@@ -63,3 +64,4 @@ int		get_base(char specifier)
 	else
 		return (1);
 }
+*/

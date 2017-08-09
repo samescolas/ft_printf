@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 10:56:20 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 13:38:10 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 09:44:59 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	ftp_print_special(t_argfmt arg)
 }
 */
 
+
+/*
 int			ftp_lpad(t_argfmt arg, int arg_len)
 {
 	size_t	chars_written;
@@ -51,6 +53,9 @@ int			ftp_lpad(t_argfmt arg, int arg_len)
 		write((++chars_written != 0), arg.flags.pad_with_zeros ? "0" : " ", 1);
 	return (chars_written);
 }
+*/
+
+
 /*
 int			ftp_lpad(t_argfmt arg, int arg_len)
 {
@@ -89,6 +94,8 @@ int			ftp_lpad(t_argfmt arg, int arg_len)
 }
 */
 
+
+/*
 int			ftp_rpad(t_argfmt arg, int arg_len)
 {
 	int		padding;
@@ -106,3 +113,4 @@ int			ftp_rpad(t_argfmt arg, int arg_len)
 			write((++chars_written != 0), " ", 1);
 	return (chars_written);
 }
+*/

@@ -6,11 +6,12 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:11:52 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 16:13:16 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 09:45:17 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+/*
 
 static t_length	get_length(char **fmt, t_argfmt *options)
 {
@@ -71,7 +72,6 @@ t_argfmt		parse_arg(char **fmt, void *arg)
 	return (options);
 }
 
-/*
 t_argfmt		parse_arg(char **fmt, void *arg)
 {
 	t_argfmt	options;
