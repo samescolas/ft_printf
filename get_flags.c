@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_flags.c                                        :+:      :+:    :+:   */
+/*   get_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 17:34:07 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/06 17:53:30 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/09 09:55:40 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/09 11:10:27 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		toggle(t_bool *flag)
-{
-	if (*flag)
-		ft_fatal("duplicate flag found\n");
-	*flag = 1;
-}
-
 void		toggle_flag(t_flags *flags, char flag)
 {
 	if (flag == '#')
-		toggle(&flags->special);
+		flags->special = 1;
 	if (flag == '0')
-		toggle(&flags->pad_with_zeros);
+		flags->pad_with_zeros = 1;
 	if (flag == '-')
-		toggle(&flags->left_justify);
+		flags->left_justify = 1;
 	if (flag == '+')
-		toggle(&flags->show_sign);
+		flags->show_sign = 1;
 	if (flag == ' ')
-		toggle(&flags->space);
+		flags->space = 1;
 }
 
-void		ftp_parse_flags(t_flags *flags, char **fmt)
+void		get_flags(char **fmt, t_flags *flags)
 {
 	while (**fmt && is_flag(**fmt))
 		toggle_flag(flags, *(*fmt)++);

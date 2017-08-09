@@ -6,12 +6,11 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 09:45:54 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 11:40:45 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 /*
 int		get_arglen(t_argfmt arg)
 {
@@ -50,7 +49,7 @@ char	get_specifier(char *fmt)
 		++ptr;
 	return (*ptr);
 }
-
+*/
 int		get_base(char specifier)
 {
 	specifier = ft_toupper(specifier);
@@ -64,4 +63,3 @@ int		get_base(char specifier)
 	else
 		return (1);
 }
-*/

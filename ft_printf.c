@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 09:44:23 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 11:41:38 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,52 @@ static int	print_arg(char **fmt, void *arg)
 	return (0);
 }
 */
+
+void		print_info(char *fmt, t_argfmt fmt_info)
+{
+	ft_putstr(fmt);
+	ft_putstr(": \n");
+	ft_putstr("flags: ");
+	if (fmt_info.flags.space)
+		ft_putstr(" ");
+	if (fmt_info.flags.special)
+		ft_putstr("#");
+	if (fmt_info.flags.pad_with_zeros)
+		ft_putstr("0");
+	if (fmt_info.flags.left_justify)
+		ft_putstr("-");
+	if (fmt_info.flags.show_sign)
+		ft_putstr("+");
+	ft_putendl("");
+	ft_putstr("width: ");
+	ft_putnbr(fmt_info.width);
+	ft_putendl("");
+	ft_putstr("length: ");
+	ft_putnbr(fmt_info.len);
+	ft_putendl("");
+	ft_putstr("precision: ");
+	ft_putnbr(fmt_info.prec);
+	ft_putendl("");
+	ft_putstr("specifier: ");
+	ft_putchar(fmt_info.spec);
+	ft_putstr("\nraw arg: ");
+	ft_putstr(fmt_info.text);
+	ft_putstr("\n\n");
+}
+
 static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 {
-	//t_argfmt	fmt_info;
+	t_argfmt	fmt_info;
+	char		*ptr;
+
 	if (!fmt || !args)
 		write(1, "not here\n", *chars_printed);
+	ptr = (*fmt)++;
 
-	write(1, "here\n", 5);
-	//fmt_info = get_formatting(fmt);
-	//convert_arg(&fmt_info, args);
+	ft_bzero(&fmt_info, sizeof(fmt_info));
+	get_formatting(fmt, &fmt_info);
+	convert_arg(&fmt_info, args);
+	print_info(ptr, fmt_info);
 	//format_arg(&fmt_info);
 	//chars_printed = write(1, fmt_info.formatted, ft_strlen(fmt_info.formatted));
 }
@@ -82,8 +119,10 @@ static void	ft_printf_va(const char *fmt, size_t *chars_printed, va_list args)
 		{
 			print_arg((char **)&fmt, chars_printed, args);
 		}
-		else if (*fmt)
-			write(++(*chars_printed) != 0, fmt++, 1);
+		else
+			++fmt;
+		//else if (*fmt)
+			//write(++(*chars_printed) != 0, fmt++, 1);
 	}
 }
 

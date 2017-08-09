@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:24:45 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/08 15:41:46 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 11:21:50 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int					ft_isascii(int n);
 int					ft_isdigit(int n);
 int					ft_isprime(int n);
 int					ft_isprint(int n);
-char				*ft_itoa_base(long long n, short base, char base_case);
+char				*ft_itoa_base(ssize_t n, short base, char base_case);
 void				ft_lstadd(t_list **alst, t_list *new_node);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

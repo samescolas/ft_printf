@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 09:19:16 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 11:36:23 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef	char	t_bool;
 
 typedef enum	e_length
 {
+	X,
 	HH,
 	H,
 	L,
@@ -41,18 +42,18 @@ typedef struct	s_flags
 typedef struct	s_argfmt
 {
 	t_flags		flags;
-	long		width;
-	long		precision;
-	t_bool		precision_specified;
-	t_length	length;
-	t_bool		length_specified;
-	char		specifier;
-	char		*formatted;
+	size_t		width;
+	size_t		prec;
+	t_length	len;
+	char		spec;
+	char		*text;
 }				t_argfmt;
 
 int				ft_printf(const char *fmt, ...);
 
 t_argfmt		parse_arg(char **fmt, void *arg);
+
+void			convert_arg(t_argfmt *fmt_info, va_list arg);
 
 int				ftp_lpad(t_argfmt arg, int arg_len);
 int				ftp_rpad(t_argfmt arg, int arg_len);
@@ -66,9 +67,10 @@ int				is_signed_specifier(char c);
 int				is_numeric_specifier(char c);
 int				get_base(char c);
 int				get_arglen(t_argfmt arg);
-char			get_specifier(char *fmt);
 
-void			ftp_parse_flags(t_flags *flags, char **fmt);
+void			get_formatting(char **fmt, t_argfmt *fmt_info);
+void			get_flags(char **fmt, t_flags *flags);
+void			get_length(char **fmt, t_length *length);
 
 int				ftp_printnum(t_argfmt arg);
 void			ft_putnum(ssize_t n, int base, char letter_case);
