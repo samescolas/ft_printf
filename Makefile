@@ -6,7 +6,7 @@
 #    By: sescolas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/13 09:59:58 by sescolas          #+#    #+#              #
-#    Updated: 2017/08/07 14:37:17 by sescolas         ###   ########.fr        #
+#    Updated: 2017/08/09 13:23:36 by sescolas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,5 +42,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	clear
 
 re: fclean all

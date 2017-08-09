@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 12:01:32 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 13:38:37 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void		print_info(char *fmt, t_argfmt fmt_info)
 	ft_putchar(fmt_info.spec);
 	ft_putstr("\nraw arg: ");
 	ft_putstr(fmt_info.text);
+	ft_putstr("\nsign: ");
+	ft_putchar(fmt_info.sign);
 	ft_putstr("\n\n");
 }
 
@@ -94,8 +96,12 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 	ft_bzero(&fmt_info, sizeof(fmt_info));
 	get_formatting(fmt, &fmt_info);
 	get_conversion(&fmt_info, args);
+	if (ft_strchr(fmt_info.text, '-') == (void *)0)
+		fmt_info.sign = '+';
+	else
+		fmt_info.sign = '-';
 	print_info(ptr, fmt_info);
-	//apply_formatting(&fmt_info, &fmt_info->text);
+	apply_formatting(fmt_info, &fmt_info.text);
 	//chars_printed = write(1, fmt_info.formatted, ft_strlen(fmt_info.formatted));
 }
 

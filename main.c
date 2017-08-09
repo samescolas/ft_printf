@@ -6,18 +6,17 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:54:30 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 14:42:20 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 #include "ft_printf.h"
 
 int		main(void)
 {
-	ft_printf("%-# 2.2s", "something");
-	ft_printf("%d", 42);
-
-	ft_printf("%#3.2lx", 17421742);
-	ft_printf("%#3.X", 1742);
+	//printf("%+3.2d", 1);
+	write(1, "\n\n\n", 3);
+	ft_printf("%+3.2d", 1);
 }
