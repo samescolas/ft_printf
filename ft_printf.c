@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:57:07 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 12:01:32 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 	get_formatting(fmt, &fmt_info);
 	get_conversion(&fmt_info, args);
 	print_info(ptr, fmt_info);
-	//format_arg(&fmt_info);
+	//apply_formatting(&fmt_info, &fmt_info->text);
 	//chars_printed = write(1, fmt_info.formatted, ft_strlen(fmt_info.formatted));
 }
 
