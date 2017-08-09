@@ -2,5 +2,5 @@
 
 int		main(void)
 {
-	printf("%ls\n", L"@");
+	printf("%% 14.3d % 14.3d\n", 2);
 }

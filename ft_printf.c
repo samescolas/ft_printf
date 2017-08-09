@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 13:38:37 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 15:02:38 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 		fmt_info.sign = '+';
 	else
 		fmt_info.sign = '-';
-	print_info(ptr, fmt_info);
+	//print_info(ptr, fmt_info);
 	apply_formatting(fmt_info, &fmt_info.text);
-	//chars_printed = write(1, fmt_info.formatted, ft_strlen(fmt_info.formatted));
+	*chars_printed = write(1, fmt_info.text, ft_strlen(fmt_info.text));
 }
 
 static	int	is_double_percent(char **fmt, size_t *chars_printed)
@@ -122,13 +122,9 @@ static void	ft_printf_va(const char *fmt, size_t *chars_printed, va_list args)
 	while (*fmt)
 	{
 		if (*fmt == '%' && !is_double_percent((char **)&fmt, chars_printed))
-		{
 			print_arg((char **)&fmt, chars_printed, args);
-		}
-		else
-			++fmt;
-		//else if (*fmt)
-			//write(++(*chars_printed) != 0, fmt++, 1);
+		else if (*fmt)
+			write(++(*chars_printed) != 0, fmt++, 1);
 	}
 }
 
