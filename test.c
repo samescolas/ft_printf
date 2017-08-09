@@ -2,5 +2,6 @@
 
 int		main(void)
 {
-	printf("%% 14.3d % 14.3d\n", 2);
+	printf("%-3x\n", 42);
+	printf("%-3d\n", 42);
 }

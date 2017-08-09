@@ -6,13 +6,18 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:55:40 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:10:27 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 15:12:55 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		toggle_flag(t_flags *flags, char flag)
+static int	is_flag(char c)
+{
+	return(c == '+' || c == '-' || c == ' ' || c == '0' || c == '#');
+}
+
+static void	toggle_flag(t_flags *flags, char flag)
 {
 	if (flag == '#')
 		flags->special = 1;

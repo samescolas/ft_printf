@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 15:03:14 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:30:35 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,33 @@ static void	apply_padding(t_argfmt info, char **text)
 	int		to_add;
 
 	padding = info.flags.pad_with_zeros ? '0' : ' ';
+	if (info.flags.left_justify)
+		padding = ' ';
 	if ((to_add = info.width - ft_strlen(*text)) > 0)
 	{
 		new = ft_strnew(ft_strlen(*text) + to_add);
 		if (info.flags.left_justify)
 		{
+			ft_strcat(new, *text);
 			while (to_add--)
 				ft_strncat(new, &padding, 1);
-			ft_strcat(new, *text);
 		}
 		else
 		{
-			ft_strcat(new, *text);
+			//while (to_add--)
+				//ft_strncat(new, &padding, 1);
+			//ft_strcat(new, *text);
+			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
+			{
+				ft_strncat(new, "0", 1);
+				ft_strncat(new, &info.spec, 1);
+			}
 			while (to_add--)
 				ft_strncat(new, &padding, 1);
+			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
+				ft_strcat(new, (info.text + 2));
+			else
+				ft_strcat(new, info.text);
 		}
 		ft_strdel(text);
 		*text = new;
@@ -85,9 +98,17 @@ static void	apply_precision(t_argfmt info, char **text)
 	if (info.prec > 0 && (to_add = info.prec - ft_strlen(info.text)) > 0)
 	{
 		new = ft_strnew(to_add + ft_strlen(info.text));
+		if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
+		{
+			ft_strncat(new, "0", 1);
+			ft_strncat(new, &info.spec, 1);
+		}
 		while (to_add--)
 			ft_strncat(new, "0", 1);
-		ft_strcat(new, info.text);
+		if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
+			ft_strcat(new, (info.text + 2));
+		else
+			ft_strcat(new, info.text);
 		ft_strdel(text);
 		*text = new;
 		new = (void *)0;
@@ -96,10 +117,23 @@ static void	apply_precision(t_argfmt info, char **text)
 
 void	apply_formatting(t_argfmt info, char **text)
 {
+	char	*new;
+
 	remove_sign(info, text);
 	if (is_numeric_specifier(info.spec))
 		apply_precision(info, text);
-	apply_sign(info, text);
+	if (info.flags.special &&
+						is_hex_or_oct(info.spec) && is_nonzero(info.text))
+	{
+		new = ft_strnew(ft_strlen(*text) + (ft_toupper(info.spec) == 'X') + 1);
+		ft_strncat(new, "0", 1);
+		if (ft_toupper(info.spec) == 'X')
+			ft_strncat(new, &info.spec, 1);
+		ft_strcat(new, *text);
+		ft_strdel(text);
+		*text = new;
+		new = (void *)0;
+	}
 	apply_padding(info, text);
-
+	apply_sign(info, text);
 }

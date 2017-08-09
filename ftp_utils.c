@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:40:45 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:24:35 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ char	get_specifier(char *fmt)
 	return (*ptr);
 }
 */
+
+int		is_nonzero(char *num)
+{
+	int		i;
+
+	i = -1;
+	while (num[++i] != '\0')
+	{
+		if (num[i] != '0')
+			return (1);
+	}
+	return (0);
+}
+
 int		get_base(char specifier)
 {
 	specifier = ft_toupper(specifier);

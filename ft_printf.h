@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 13:35:19 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:22:02 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ int				ftp_rpad(t_argfmt arg, int arg_len);
 
 size_t			ft_padnbr(t_argfmt arg, int written);
 
-int				is_flag(char c);
 int				is_length_specifier(char c);
 int				is_specifier(char c);
 int				is_signed_specifier(char c);
 int				is_numeric_specifier(char c);
+int				is_hex_or_oct(char c);
+int				is_nonzero(char *num);
 int				get_base(char c);
 int				get_arglen(t_argfmt arg);
 

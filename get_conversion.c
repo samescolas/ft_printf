@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:57:49 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:19:50 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,9 @@ static void	convert_numeric(t_argfmt *fmt_info, va_list arg)
 	if (fmt_info->len > 0)
 	{
 		if (is_signed_specifier(fmt_info->spec))
-		{
-			ft_putendl("converting to signed value");
 			convert_signed(fmt_info, arg);
-		}
 		else
-		{
 			convert_unsigned(fmt_info, arg);
-			ft_putendl("converting to unsigned value");
-		}
 	}
 	else if (ft_toupper(fmt_info->spec) == 'D' || fmt_info->spec == 'i')
 		fmt_info->text = ft_itoa_base(va_arg(arg, int), 10, b_case);

@@ -6,15 +6,15 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 16:31:06 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/07 15:59:44 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 15:13:18 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_flag(char c)
+int		is_hex_or_oct(char c)
 {
-	return(c == '+' || c == '-' || c == ' ' || c == '0' || c == '#');
+	return (ft_toupper(c) == 'X' || ft_toupper(c) == 'O');
 }
 
 int		is_length_specifier(char c)

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:24:45 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:21:50 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:13:51 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_file
 	struct s_file	*next;
 }					t_file;
 
-int					ft_atoi(const char *str);
+ssize_t				ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_ceil(int a, int b);
 int					ft_countwords(const char *s, char c);
