@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_conversion.c                                   :+:      :+:    :+:   */
+/*   get_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 21:23:46 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:53:45 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/09 11:57:49 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
+static void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
 {
 	short	base;
 	char	b_case;
@@ -39,7 +39,7 @@ void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
 				ft_itoa_base(va_arg(arg, size_t), base, b_case);
 }
 
-void	convert_signed(t_argfmt *fmt_info, va_list arg)
+static void	convert_signed(t_argfmt *fmt_info, va_list arg)
 {
 	short	base;
 	char	b_case;
@@ -60,7 +60,7 @@ void	convert_signed(t_argfmt *fmt_info, va_list arg)
 		fmt_info->text = ft_itoa_base(va_arg(arg, ssize_t), base, b_case);
 }
 
-void	convert_numeric(t_argfmt *fmt_info, va_list arg)
+static void	convert_numeric(t_argfmt *fmt_info, va_list arg)
 {
 	char	b_case;
 
@@ -88,7 +88,7 @@ void	convert_numeric(t_argfmt *fmt_info, va_list arg)
 		fmt_info->text = ft_itoa_base(va_arg(arg, unsigned int), 8, b_case);
 }
 
-void	convert_arg(t_argfmt *fmt_info, va_list arg)
+void		get_conversion(t_argfmt *fmt_info, va_list arg)
 {
 	if (ft_toupper(fmt_info->spec) == 'C')
 	{
@@ -103,39 +103,3 @@ void	convert_arg(t_argfmt *fmt_info, va_list arg)
 		return ;
 	}
 }
-
-/*
-intmax_t	convert_value(void *n, t_length len, char specifier)
-{
-	t_bool	is_unsigned;
-
-	if ((is_unsigned = !is_signed_specifier(specifier)))
-		ft_putstr("converting to unsigned...\n");
-	else
-		ft_putstr("converting to signed...\n");
-	if (len == HH)
-		return ((is_unsigned ? (unsigned char)n : (char)n));
-	else if (len == H)
-		return ((is_unsigned ? (unsigned short)n : (short)n));
-	else if (len == L)
-		return ((is_unsigned ? (unsigned long)n : (long)n));
-	else if (len == LL)
-		return ((is_unsigned ? (unsigned long long)n : (long long)n));
-	else if (len == J)
-		return ((is_unsigned ? (uintmax_t)n : (intmax_t)n));
-	else if (len == Z)
-		return ((is_unsigned ? (size_t)n : (ssize_t)n));
-	return (0);
-}
-
-intmax_t	convert_fmt(t_argfmt arg, void *n)
-{
-	if (arg.length_specified)
-		return (convert_value(n, arg.length, arg.specifier));
-	else if (is_signed_specifier(arg.specifier) || arg.specifier == 'C')
-		return ((int)n);
-	else if (arg.specifier == 'c')
-		return ((char)n);
-	return ((unsigned int)n);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 11:36:23 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 11:56:53 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				ft_printf(const char *fmt, ...);
 
 t_argfmt		parse_arg(char **fmt, void *arg);
 
-void			convert_arg(t_argfmt *fmt_info, va_list arg);
+void			get_conversion(t_argfmt *fmt_info, va_list arg);
 
 int				ftp_lpad(t_argfmt arg, int arg_len);
 int				ftp_rpad(t_argfmt arg, int arg_len);
@@ -76,7 +76,6 @@ int				ftp_printnum(t_argfmt arg);
 void			ft_putnum(ssize_t n, int base, char letter_case);
 size_t			ft_numlen(long long num, short base);
 
-intmax_t		convert_fmt(t_argfmt arg, void *n);
 
 void			ft_fatal(char *err_msg);
 
