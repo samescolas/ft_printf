@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 10:49:12 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:24:10 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ static void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
 	base = get_base(fmt_info->spec);
 	b_case = fmt_info->spec >= 97 ? 'a' : 'A';
 	if (fmt_info->len == HH)
-		fmt_info->text =
-				ft_itoa_base((unsigned char)va_arg(arg, int), base, b_case);
+		fmt_info->text = ft_itoa_base(
+							(unsigned char)va_arg(arg, int), base, b_case);
 	else if (fmt_info->len == H)
-		fmt_info->text =
-				ft_itoa_base((unsigned short)va_arg(arg, int), base, b_case);
+		fmt_info->text = ft_itoa_base(
+							(unsigned short)va_arg(arg, int), base, b_case);
 	else if (fmt_info->len == L)
-		fmt_info->text =
-				ft_itoa_base(va_arg(arg, unsigned long), base, b_case);
+		fmt_info->text = ft_itoa_base(
+					(unsigned long)va_arg(arg, unsigned long), base, b_case);
 	else if (fmt_info->len == LL)
-		fmt_info->text =
-				ft_itoa_base(va_arg(arg, unsigned long long), base, b_case);
+		fmt_info->text = ft_itoa_base(
+			(unsigned long long)va_arg(arg, unsigned long long), base, b_case);
 	else if (fmt_info->len == J)
-		fmt_info->text =
-				ft_itoa_base((uintmax_t)va_arg(arg, uintmax_t), base, b_case);
+		fmt_info->text = ft_itoa_base(
+							(uintmax_t)va_arg(arg, uintmax_t), base, b_case);
 	else if (fmt_info->len == Z)
-		fmt_info->text =
-				ft_itoa_base((size_t)va_arg(arg, size_t), base, b_case);
+		fmt_info->text = ft_itoa_base(
+								(size_t)va_arg(arg, size_t), base, b_case);
 }
 
 static void	convert_signed(t_argfmt *fmt_info, va_list arg)
@@ -51,13 +51,13 @@ static void	convert_signed(t_argfmt *fmt_info, va_list arg)
 	else if (fmt_info->len == H)
 		fmt_info->text = ft_itoa_base((short)va_arg(arg, int), base, b_case);
 	else if (fmt_info->len == L)
-		fmt_info->text = ft_itoa_base(va_arg(arg, long), base, b_case);
+		fmt_info->text = ft_itoa_base((long)va_arg(arg, long), base, b_case);
 	else if (fmt_info->len == LL)
-		fmt_info->text = ft_itoa_base(va_arg(arg, long long), base, b_case);
+		fmt_info->text = ft_itoa_base((long long)va_arg(arg, long long), base, b_case);
 	else if (fmt_info->len == J)
-		fmt_info->text = ft_itoa_base(va_arg(arg, intmax_t), base, b_case);
+		fmt_info->text = ft_itoa_base((intmax_t)va_arg(arg, intmax_t), base, b_case);
 	else if (fmt_info->len == Z)
-		fmt_info->text = ft_itoa_base(va_arg(arg, ssize_t), base, b_case);
+		fmt_info->text = ft_itoa_base((ssize_t)va_arg(arg, ssize_t), base, b_case);
 }
 
 static void	convert_numeric(t_argfmt *fmt_info, va_list arg)
