@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 15:19:49 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 16:37:55 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int		main(void)
 {
-	ft_printf("%D\n", INT32_MAX + 1);
-	printf("%D\n", INT32_MAX + 1);
+	ft_printf("%5.d\n", 0);
+	ft_printf("%5.0d\n", 0);
 }

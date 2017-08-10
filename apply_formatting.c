@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:44:31 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 16:39:57 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,22 @@ static void	remove_sign(t_argfmt info, char **text)
 	}
 }
 
+static void	remove_zeros(t_argfmt info, char **text)
+{
+	if (!is_nonzero(*text) && info.prec == 0 && info.flags.prec_specified &&
+						info.flags.special && is_numeric_specifier(info.spec))
+	{
+		ft_strdel(text);
+		*text = ft_strdup("");
+	}
+}
+
 void		apply_formatting(t_argfmt info, char **text)
 {
 	char	*new;
 
 	remove_sign(info, text);
+	remove_zeros(info, text);
 	apply_precision(info, text);
 	if (info.flags.special &&
 						is_hex_or_oct(info.spec) && is_nonzero(info.text))

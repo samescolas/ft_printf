@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:49:26 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 15:24:21 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 16:36:49 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,20 @@ static void	get_width(char **fmt, size_t *width)
 		++(*fmt);
 }
 
-static void	get_precision(char **fmt, size_t *precision)
+static void	get_precision(char **fmt, t_argfmt *fmt_info)
 {
+	if (**fmt == '.')
+	{
+		fmt_info->flags.prec_specified = 1;
+		fmt_info->prec = 0;
+	}
 	if (**fmt != '.' || !ft_isdigit(*(++(*fmt))))
 	{
-		*precision = 0;
+		fmt_info->flags.prec_specified = 0;
+		fmt_info->prec = 0;
 		return ;
 	}
-	*precision = ft_atoi(*fmt);
+	fmt_info->prec= ft_atoi(*fmt);
 	while (**fmt && ft_isdigit(**fmt))
 		++(*fmt);
 }
@@ -49,7 +55,7 @@ void		get_formatting(char **fmt, t_argfmt *fmt_info)
 	*fmt += 1;
 	get_flags(fmt, &fmt_info->flags);
 	get_width(fmt, &fmt_info->width);
-	get_precision(fmt, &fmt_info->prec);
+	get_precision(fmt, fmt_info);
 	get_length(fmt, &fmt_info->len);
 	get_specifier(fmt, &fmt_info->spec);
 	if (fmt_info->len < L && (fmt_info->spec == 'D' ||

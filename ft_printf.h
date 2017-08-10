@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:54:34 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 16:02:56 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_flags
 	t_bool		left_justify;
 	t_bool		show_sign;
 	t_bool		space;
+	t_bool		prec_specified;
 }				t_flags;
 
 typedef struct	s_argfmt

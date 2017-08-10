@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 22:32:28 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:46:43 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 15:58:22 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	adjust_prec_nbr(t_argfmt info, char **text)
 	int		to_add;
 
 	new = (void *)0;
-	if ((info.flags.pad_with_zeros && info.flags.special) || !is_nonzero(*text))
+	if ((info.flags.pad_with_zeros && info.flags.special) ||
+		   (!is_nonzero(*text) && ft_toupper(info.spec) != 'D'))
 		return ;
 	if (info.prec > 0 && (to_add = info.prec - ft_strlen(info.text)) > 0)
 	{
