@@ -6,49 +6,11 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 16:05:35 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:35:52 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-static int	print_parsed_arg(t_argfmt arg)
-{
-	if (ft_toupper(arg.specifier) == 'S')
-	{
-		ft_putstr(arg.arg.str_val);
-		return (ft_strlen(arg.arg.str_val));
-	}
-	else if (is_numeric_specifier(arg.specifier))
-		return (ftp_printnum(arg));
-	return (0);
-}
-
-static int	print_arg(char **fmt, void *arg)
-{
-	ssize_t		num;
-	char		*str;
-
-	str = (void *)0;
-	if (*(*fmt + 1) && is_numeric_specifier(get_specifier(*fmt)))
-	{
-		num = (ssize_t)arg;
-		ft_putstr("in print_arg: ");
-		ft_putnbr(num);
-		ft_putendl("");
-		return (print_parsed_arg(parse_arg(fmt, &num)));
-	}
-	else if (*(*fmt + 1))
-	{
-		str = (char *)arg;
-		if (str)
-			return (print_parsed_arg(parse_arg(fmt, str)));
-		else
-			return (write(1, "(null)", 6));
-	}
-	return (0);
-}
-*/
 
 void		print_info(char *fmt, t_argfmt fmt_info)
 {
@@ -100,9 +62,11 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 		fmt_info.sign = '+';
 	else
 		fmt_info.sign = '-';
-	//print_info(ptr, fmt_info);
 	apply_formatting(fmt_info, &fmt_info.text);
-	*chars_printed += write(1, fmt_info.text, ft_strlen(fmt_info.text));
+	if (ft_toupper(fmt_info.spec) == 'C' && is_blank(fmt_info.text))
+		write((++*chars_printed != 0), fmt_info.text, ft_strlen(fmt_info.text));
+	else
+		*chars_printed += write(1, fmt_info.text, ft_strlen(fmt_info.text));
 }
 
 static	int	is_double_percent(char **fmt, size_t *chars_printed)

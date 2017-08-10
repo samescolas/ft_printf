@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 22:43:48 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:33:53 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int				is_signed_specifier(char c);
 int				is_numeric_specifier(char c);
 int				is_hex_or_oct(char c);
 int				is_nonzero(char *num);
+int				is_blank(char *str);
 int				get_base(char c);
 int				get_arglen(t_argfmt arg);
 

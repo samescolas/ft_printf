@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 11:35:18 by sescolas          #+#    #+#             */
-/*   Updated: 2017/01/20 10:41:59 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:22:07 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *str)
 {
 	size_t len;
 
+	if (!str)
+		return (0);
 	len = 0;
 	while (str[len])
 		len++;

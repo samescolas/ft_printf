@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 22:51:58 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:26:52 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void		get_conversion(t_argfmt *fmt_info, va_list arg)
 		convert_numeric(fmt_info, arg);
 	else if (ft_toupper(fmt_info->spec) == 'S')
 	{
-		fmt_info->text = ft_strdup(va_arg(arg, char *));
+		if (!(fmt_info->text = ft_strdup(va_arg(arg, char *))))
+			fmt_info->text = ft_strdup("(null)");
 		return ;
 	}
 }

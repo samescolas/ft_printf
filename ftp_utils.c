@@ -6,50 +6,24 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 11:09:12 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 16:24:35 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:33:17 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-int		get_arglen(t_argfmt arg)
+
+int		is_blank(char *str)
 {
-	int		ret;
-	int		add;
+	int		i;
 
-	if (ft_toupper(arg.specifier) == 'C')
-		return (1);
-	else if (is_numeric_specifier(arg.specifier))
-		return (ft_numlen(arg.arg.num_val, get_base(arg.specifier))
-														- (arg.arg.num_val < 0));
-	else if (arg.specifier == 'S')
-		return (0);
-	else
-		return (ft_strlen(arg.arg.str_val));
-	add = 0;
-	if (arg.flags.special && arg.arg.num_val > 0 && (
-		ft_toupper(arg.specifier) == 'O' || ft_toupper(arg.specifier) == 'X'))
-		add += 1 + (ft_toupper(arg.specifier) == 'X');
-	if (arg.flags.show_sign && is_numeric_specifier(arg.specifier) &&
-					ft_toupper(arg.specifier) != 'U' && arg.arg.num_val > 0)
-		add += 1;
-	else if (arg.flags.space)
-		add += 1;
-	if (arg.precision > 0 && arg.precision < ret + add)
-		return (arg.precision);
-	return (ret + add);
+	i = -1;
+	while (str[++i] != '\0')
+	{
+		if (str[i] != ' ')
+			return (0);
+	}
+	return (1);
 }
-
-char	get_specifier(char *fmt)
-{
-	char	*ptr;
-
-	ptr = fmt;
-	while (*ptr && !is_specifier(*ptr))
-		++ptr;
-	return (*ptr);
-}
-*/
 
 int		is_nonzero(char *num)
 {
