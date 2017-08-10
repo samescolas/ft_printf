@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 10:26:52 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:49:12 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,24 @@ static void	convert_numeric(t_argfmt *fmt_info, va_list arg)
 		fmt_info->text = ft_itoa_base(va_arg(arg, unsigned int), 8, b_case);
 }
 
+static void	convert_pointer(t_argfmt *fmt_info, va_list arg)
+{
+	char	*prefix;
+	char	*val;
+	long	p;
+
+	prefix = ft_strdup("0x");
+	if ((p = (long)va_arg(arg, void *)) == 0)
+		fmt_info->text = ft_strjoin(prefix, "0");
+	else
+	{
+		val = ft_itoa_base(p, 16, 'a');
+		fmt_info->text = ft_strjoin(prefix, val);
+		ft_strdel(&val);
+	}
+	ft_strdel(&prefix);
+}
+
 void		get_conversion(t_argfmt *fmt_info, va_list arg)
 {
 	if (ft_toupper(fmt_info->spec) == 'C')
@@ -97,4 +115,6 @@ void		get_conversion(t_argfmt *fmt_info, va_list arg)
 			fmt_info->text = ft_strdup("(null)");
 		return ;
 	}
+	else if (ft_toupper(fmt_info->spec) == 'P')
+		convert_pointer(fmt_info, arg);
 }
