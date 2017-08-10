@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 12:35:55 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/10 12:14:29 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/10 12:16:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+void		ft_putnbr_u(uintmax_t n)
 {
-	ft_printf("%llu\n", 92233720808);
+	if (n < 10)
+		ft_putchar(n + '0');
+	else
+	{
+		ft_putnbr(n / 10);
+		ft_putchar((n % 10) + '0');
+	}
 }

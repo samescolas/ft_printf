@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:49:26 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 10:58:46 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 12:30:39 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	get_specifier(char **fmt, char *specifier)
 
 void		get_formatting(char **fmt, t_argfmt *fmt_info)
 {
+	*fmt += 1;
 	get_flags(fmt, &fmt_info->flags);
 	get_width(fmt, &fmt_info->width);
 	get_precision(fmt, &fmt_info->prec);

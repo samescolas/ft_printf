@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 10:35:52 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 12:31:55 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@ void		print_info(char *fmt, t_argfmt fmt_info)
 static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 {
 	t_argfmt	fmt_info;
-	char		*ptr;
-
-	if (!fmt || !args)
-		write(1, "not here\n", *chars_printed);
-	ptr = (*fmt)++;
 
 	ft_bzero(&fmt_info, sizeof(fmt_info));
 	get_formatting(fmt, &fmt_info);

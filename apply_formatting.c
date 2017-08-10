@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 11:16:06 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:47:04 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,6 @@ static void	remove_sign(t_argfmt info, char **text)
 		}
 	}
 }
-/*
-static void	the_space_flag(t_argfmt info, char **text)
-{
-	char	*new;
-
-	if (is_signed_specifier(info.spec) && ft_toupper(info.spec) != 'C' &&
-								!info.flags.show_sign && info.flags.space &&
-											ft_strchr(*text, '-') == (void *)0)
-	{
-		new = ft_strnew(ft_strlen(info.text + 1));
-		ft_strncat(new, " ", 1);
-		ft_strcat(new, *text);
-		ft_strdel(text);
-		*text = new;
-		new = (void *)0;
-	}
-}
-*/
 
 void	apply_formatting(t_argfmt info, char **text)
 {
@@ -86,5 +68,4 @@ void	apply_formatting(t_argfmt info, char **text)
 	}
 	apply_sign(info, text);
 	apply_padding(info, text);
-	//the_space_flag(info, text);
 }
