@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 11:47:04 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:44:31 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	remove_sign(t_argfmt info, char **text)
 	}
 }
 
-void	apply_formatting(t_argfmt info, char **text)
+void		apply_formatting(t_argfmt info, char **text)
 {
 	char	*new;
 
