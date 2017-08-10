@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 21:59:00 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 22:51:58 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
 				ft_itoa_base(va_arg(arg, unsigned long long), base, b_case);
 	else if (fmt_info->len == J)
 		fmt_info->text =
-				ft_itoa_base(va_arg(arg, uintmax_t), base, b_case);
+				ft_itoa_base((uintmax_t)va_arg(arg, uintmax_t), base, b_case);
 	else if (fmt_info->len == Z)
 		fmt_info->text =
-				ft_itoa_base(va_arg(arg, size_t), base, b_case);
+				ft_itoa_base((size_t)va_arg(arg, size_t), base, b_case);
 }
 
 static void	convert_signed(t_argfmt *fmt_info, va_list arg)
