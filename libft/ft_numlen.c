@@ -6,13 +6,13 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 15:26:15 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 21:52:30 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:39:11 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_numlen(ssize_t num, short base)
+size_t		ft_numlen(intmax_t num, short base)
 {
 	short	len;
 

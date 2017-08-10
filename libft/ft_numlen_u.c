@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_numlen_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 11:36:13 by sescolas         ###   ########.fr       */
+/*   Created: 2017/08/10 11:39:45 by sescolas          #+#    #+#             */
+/*   Updated: 2017/08/10 11:40:02 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+size_t		ft_numlen_u(uintmax_t num, short base)
 {
+	short	len;
 
-	//printf("%lld", -9223372036854775808uLL);
-	ft_printf("%lld", -9223372036854775808uLL);
+	if (num == 0)
+		return (1);
+	len = 0;
+	while (num != 0)
+	{
+		num /= base;
+		++len;
+	}
+	return (len);
 }

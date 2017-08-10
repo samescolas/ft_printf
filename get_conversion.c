@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 11:24:10 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:41:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ static void	convert_unsigned(t_argfmt *fmt_info, va_list arg)
 	base = get_base(fmt_info->spec);
 	b_case = fmt_info->spec >= 97 ? 'a' : 'A';
 	if (fmt_info->len == HH)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 							(unsigned char)va_arg(arg, int), base, b_case);
 	else if (fmt_info->len == H)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 							(unsigned short)va_arg(arg, int), base, b_case);
 	else if (fmt_info->len == L)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 					(unsigned long)va_arg(arg, unsigned long), base, b_case);
 	else if (fmt_info->len == LL)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 			(unsigned long long)va_arg(arg, unsigned long long), base, b_case);
 	else if (fmt_info->len == J)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 							(uintmax_t)va_arg(arg, uintmax_t), base, b_case);
 	else if (fmt_info->len == Z)
-		fmt_info->text = ft_itoa_base(
+		fmt_info->text = ft_itoa_base_u(
 								(size_t)va_arg(arg, size_t), base, b_case);
 }
 

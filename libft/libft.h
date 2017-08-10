@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:24:45 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 21:52:43 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:41:03 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int					ft_isascii(int n);
 int					ft_isdigit(int n);
 int					ft_isprime(int n);
 int					ft_isprint(int n);
-char				*ft_itoa_base(ssize_t n, short base, char base_case);
+char				*ft_itoa_base(intmax_t n, short base, char base_case);
+char				*ft_itoa_base_u(uintmax_t n, short base, char base_case);
 void				ft_lstadd(t_list **alst, t_list *new_node);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -63,7 +64,8 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				ft_memdel(void **ap);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
-size_t				ft_numlen(ssize_t  n, short base);
+size_t				ft_numlen(intmax_t  n, short base);
+size_t				ft_numlen_u(uintmax_t  n, short base);
 int					ft_putchar(int c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(const char *s);
