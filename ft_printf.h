@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 21:53:21 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 22:43:48 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_argfmt		parse_arg(char **fmt, void *arg);
 
 void			get_conversion(t_argfmt *fmt_info, va_list arg);
 void			apply_formatting(t_argfmt info, char **text);
+void			apply_padding(t_argfmt info, char **text);
+void			apply_precision(t_argfmt info, char **text);
 
 int				ftp_lpad(t_argfmt arg, int arg_len);
 int				ftp_rpad(t_argfmt arg, int arg_len);

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 11:23:25 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 21:42:42 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 22:47:31 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int		main(void)
 {
-	ft_printf("%#8x\n", 42);
-	printf("%#8x\n", 42);
+	ft_printf("%2.2s\n", "testing");
+	printf("%2.2s\n", "testing");
 }
