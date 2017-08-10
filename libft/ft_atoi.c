@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 11:55:58 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 16:13:34 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:59:29 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_iswhitespace(char c)
 ssize_t		ft_atoi(const char *str)
 {
 	ssize_t	sum;
-	int 	sign;
+	int		sign;
 
 	sign = 1;
 	sum = 0;
