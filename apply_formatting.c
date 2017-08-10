@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 16:30:35 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 21:49:05 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,17 @@ static void	apply_padding(t_argfmt info, char **text)
 			//while (to_add--)
 				//ft_strncat(new, &padding, 1);
 			//ft_strcat(new, *text);
-			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
+			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text) && padding == '0')
 			{
 				ft_strncat(new, "0", 1);
 				ft_strncat(new, &info.spec, 1);
 			}
 			while (to_add--)
 				ft_strncat(new, &padding, 1);
-			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text))
-				ft_strcat(new, (info.text + 2));
+			if (ft_toupper(info.spec) == 'X' && info.flags.special && is_nonzero(*text) && padding == '0')
+				ft_strcat(new, (*text + 2));
 			else
-				ft_strcat(new, info.text);
+				ft_strcat(new, *text);
 		}
 		ft_strdel(text);
 		*text = new;
@@ -134,6 +134,7 @@ void	apply_formatting(t_argfmt info, char **text)
 		*text = new;
 		new = (void *)0;
 	}
-	apply_padding(info, text);
+	//if (info.flags.special == 100)
 	apply_sign(info, text);
+	apply_padding(info, text);
 }
