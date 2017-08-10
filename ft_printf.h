@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 16:22:02 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/09 21:53:21 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void			get_length(char **fmt, t_length *length);
 
 int				ftp_printnum(t_argfmt arg);
 void			ft_putnum(ssize_t n, int base, char letter_case);
-size_t			ft_numlen(long long num, short base);
 
 
 void			ft_fatal(char *err_msg);
