@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:49:26 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 12:30:39 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 15:24:21 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,7 @@ void		get_formatting(char **fmt, t_argfmt *fmt_info)
 	get_precision(fmt, &fmt_info->prec);
 	get_length(fmt, &fmt_info->len);
 	get_specifier(fmt, &fmt_info->spec);
+	if (fmt_info->len < L && (fmt_info->spec == 'D' ||
+				fmt_info->spec == 'U' || fmt_info->spec == 'O'))
+		fmt_info->len = L;
 }
