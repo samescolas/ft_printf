@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 21:55:20 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 22:31:52 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 11:15:51 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,23 @@ static void	apply_left_padding(char *text, char **new, char padding, int len)
 		ft_strncat(*new, &padding, 1);
 }
 
+static void	the_space_flag(t_argfmt info, char **text)
+{
+	char	*new;
+
+	if (is_signed_specifier(info.spec) && ft_toupper(info.spec) != 'C' &&
+								!info.flags.show_sign && info.flags.space &&
+											ft_strchr(*text, '-') == (void *)0)
+	{
+		new = ft_strnew(ft_strlen(info.text + 1));
+		ft_strncat(new, " ", 1);
+		ft_strcat(new, *text);
+		ft_strdel(text);
+		*text = new;
+		new = (void *)0;
+	}
+}
+
 void	apply_padding(t_argfmt info, char **text)
 {
 	char	padding;
@@ -69,4 +86,6 @@ void	apply_padding(t_argfmt info, char **text)
 		*text = new;
 		new = (void *)0;
 	}
+	else
+		the_space_flag(info, text);
 }
