@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 21:55:20 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 11:15:51 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:47:09 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	the_space_flag(t_argfmt info, char **text)
 	}
 }
 
-void	apply_padding(t_argfmt info, char **text)
+void		apply_padding(t_argfmt info, char **text)
 {
 	char	padding;
 	char	*new;
