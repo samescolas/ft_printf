@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:55:40 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 15:12:55 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:49:06 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_flag(char c)
 {
-	return(c == '+' || c == '-' || c == ' ' || c == '0' || c == '#');
+	return (c == '+' || c == '-' || c == ' ' || c == '0' || c == '#');
 }
 
 static void	toggle_flag(t_flags *flags, char flag)

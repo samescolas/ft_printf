@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 12:31:04 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:48:27 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ static void	convert_signed(t_argfmt *fmt_info, va_list arg)
 	else if (fmt_info->len == L)
 		fmt_info->text = ft_itoa_base((long)va_arg(arg, long), base, b_case);
 	else if (fmt_info->len == LL)
-		fmt_info->text = ft_itoa_base((long long)va_arg(arg, long long), base, b_case);
+		fmt_info->text =
+				ft_itoa_base((long long)va_arg(arg, long long), base, b_case);
 	else if (fmt_info->len == J)
-		fmt_info->text = ft_itoa_base((intmax_t)va_arg(arg, intmax_t), base, b_case);
+		fmt_info->text =
+				ft_itoa_base((intmax_t)va_arg(arg, intmax_t), base, b_case);
 	else if (fmt_info->len == Z)
-		fmt_info->text = ft_itoa_base((ssize_t)va_arg(arg, ssize_t), base, b_case);
+		fmt_info->text =
+				ft_itoa_base((ssize_t)va_arg(arg, ssize_t), base, b_case);
 }
 
 static void	convert_numeric(t_argfmt *fmt_info, va_list arg)

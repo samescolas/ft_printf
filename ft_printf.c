@@ -6,45 +6,11 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:16:17 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:48:57 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void		print_info(char *fmt, t_argfmt fmt_info)
-{
-	ft_putstr(fmt);
-	ft_putstr(": \n");
-	ft_putstr("flags: ");
-	if (fmt_info.flags.space)
-		ft_putstr(" ");
-	if (fmt_info.flags.special)
-		ft_putstr("#");
-	if (fmt_info.flags.pad_with_zeros)
-		ft_putstr("0");
-	if (fmt_info.flags.left_justify)
-		ft_putstr("-");
-	if (fmt_info.flags.show_sign)
-		ft_putstr("+");
-	ft_putendl("");
-	ft_putstr("width: ");
-	ft_putnbr(fmt_info.width);
-	ft_putendl("");
-	ft_putstr("length: ");
-	ft_putnbr(fmt_info.len);
-	ft_putendl("");
-	ft_putstr("precision: ");
-	ft_putnbr(fmt_info.prec);
-	ft_putendl("");
-	ft_putstr("specifier: ");
-	ft_putchar(fmt_info.spec);
-	ft_putstr("\nraw arg: ");
-	ft_putstr(fmt_info.text);
-	ft_putstr("\nsign: ");
-	ft_putchar(fmt_info.sign);
-	ft_putstr("\n\n");
-}
 
 static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 {
@@ -59,7 +25,8 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 		fmt_info.sign = '-';
 	apply_formatting(fmt_info, &fmt_info.text);
 	if (ft_toupper(fmt_info.spec) == 'C' && is_blank(fmt_info.text))
-		write((++(*chars_printed) != 0), fmt_info.text, ft_strlen(fmt_info.text));
+		write((++(*chars_printed) != 0),
+								fmt_info.text, ft_strlen(fmt_info.text));
 	else
 		*chars_printed += write(1, fmt_info.text, ft_strlen(fmt_info.text));
 }

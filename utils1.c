@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 16:31:06 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/09 15:13:18 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:47:34 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int		is_numeric_specifier(char c)
 	return (ft_toupper(c) == 'C' || ft_toupper(c) == 'D' || ft_toupper(c) == 'U'
 				|| c == 'i' || ft_toupper(c) == 'O' || ft_toupper(c) == 'X');
 }
-
