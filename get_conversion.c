@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 11:42:40 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:35:45 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void		get_conversion(t_argfmt *fmt_info, va_list arg)
 	else if (fmt_info->spec == 'C')
 	{
 		fmt_info->text = ft_strnew(4);
-		fmt_info->arg_len = ft_wctomb((wchar_t)va_arg(arg, int), &fmt_info->text);
+		fmt_info->arg_len = ft_wctomb((wchar_t)va_arg(arg, wint_t), &fmt_info->text);
 	}
 	else if (is_numeric_specifier(fmt_info->spec))
 		convert_numeric(fmt_info, arg);
