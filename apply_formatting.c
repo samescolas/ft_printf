@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 12:01:39 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:05:22 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:26:00 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,14 @@ static void	add_prefix(t_argfmt info, char **text, size_t *len)
 	if (info.flags.special &&
 						is_hex_or_oct(info.spec) && is_nonzero(info.text))
 	{
-		*len += 2;
+		*len += 1;
 		new = ft_strnew(ft_strlen(*text) + (ft_toupper(info.spec) == 'X') + 1);
 		ft_strncat(new, "0", 1);
 		if (ft_toupper(info.spec) == 'X')
+		{
+			*len += 1;
 			ft_strncat(new, &info.spec, 1);
+		}
 		ft_strcat(new, *text);
 		ft_strdel(text);
 		*text = new;
