@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 16:02:56 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 11:30:40 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,38 +49,30 @@ typedef struct	s_argfmt
 	char		spec;
 	char		*text;
 	char		sign;
+	size_t		arg_len;
 }				t_argfmt;
 
 int				ft_printf(const char *fmt, ...);
 
-t_argfmt		parse_arg(char **fmt, void *arg);
-
+void			get_formatting(char **fmt, t_argfmt *fmt_info);
 void			get_conversion(t_argfmt *fmt_info, va_list arg);
+void			get_flags(char **fmt, t_flags *flags);
+void			get_length(char **fmt, t_length *length);
+int				get_base(char c);
+
 void			apply_formatting(t_argfmt info, char **text);
 void			apply_padding(t_argfmt info, char **text);
 void			apply_precision(t_argfmt info, char **text);
 
-int				ftp_lpad(t_argfmt arg, int arg_len);
-int				ftp_rpad(t_argfmt arg, int arg_len);
-
-size_t			ft_padnbr(t_argfmt arg, int written);
-
-int				is_length_specifier(char c);
 int				is_specifier(char c);
 int				is_signed_specifier(char c);
 int				is_numeric_specifier(char c);
+int				is_length_specifier(char c);
 int				is_hex_or_oct(char c);
 int				is_nonzero(char *num);
 int				is_blank(char *str);
-int				get_base(char c);
-int				get_arglen(t_argfmt arg);
 
-void			get_formatting(char **fmt, t_argfmt *fmt_info);
-void			get_flags(char **fmt, t_flags *flags);
-void			get_length(char **fmt, t_length *length);
-
-int				ftp_printnum(t_argfmt arg);
-void			ft_putnum(ssize_t n, int base, char letter_case);
+int				ft_wctomb(wchar_t wc, char **buf);
 
 void			ft_fatal(char *err_msg);
 

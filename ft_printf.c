@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:48:57 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 11:34:55 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 	ft_bzero(&fmt_info, sizeof(fmt_info));
 	get_formatting(fmt, &fmt_info);
 	get_conversion(&fmt_info, args);
+	if (ft_toupper(fmt_info.spec) != 'C')
+		fmt_info.arg_len = ft_strlen(fmt_info.text);
 	if (ft_strchr(fmt_info.text, '-') == (void *)0)
 		fmt_info.sign = '+';
 	else

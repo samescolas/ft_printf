@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 13:48:27 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 11:34:35 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,16 @@ static void	convert_pointer(t_argfmt *fmt_info, va_list arg)
 
 void		get_conversion(t_argfmt *fmt_info, va_list arg)
 {
-	if (ft_toupper(fmt_info->spec) == 'C')
+	if (fmt_info->spec == 'c')
 	{
 		fmt_info->text = ft_strnew(1);
 		fmt_info->text[0] = va_arg(arg, int);
+		fmt_info->arg_len = ft_isprint(fmt_info->text[0]);
+	}
+	else if (fmt_info->spec == 'C')
+	{
+		fmt_info->text = ft_strnew(4);
+		fmt_info->arg_len = ft_wctomb((wchar_t)va_arg(arg, int), &fmt_info->text);
 	}
 	else if (is_numeric_specifier(fmt_info->spec))
 		convert_numeric(fmt_info, arg);
