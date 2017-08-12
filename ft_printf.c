@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:28:17 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 13:25:19 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 								fmt_info.text, ft_strlen(fmt_info.text));
 	else
 	{
-		write(1, fmt_info.text, ft_strlen(fmt_info.text));
+		write(1, fmt_info.text, fmt_info.arg_len);
 		*chars_printed += fmt_info.arg_len;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:37:25 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 13:31:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				is_nonzero(char *num);
 int				is_blank(char *str);
 
 int				ft_wctomb(wchar_t wc, char **buf);
+char			*ft_wstrtomb(wchar_t *wstr);
 
 void			ft_fatal(char *err_msg);
 

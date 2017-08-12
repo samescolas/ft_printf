@@ -6,11 +6,25 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/12 11:18:35 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 11:32:12 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 13:33:44 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*ft_wstrtomb(wchar_t *wstr)
+{
+	char	*ret;
+	char	*ptr;
+
+	if (!wstr)
+		return ((void *)0);
+	ret = ft_strnew(ft_wstrlen(wstr));
+	ptr = ret;
+	while (*wstr++)
+		ptr += ft_wctomb(*(wstr - 1), &ptr);
+	return (ret);
+}
 
 int		ft_wctomb(wchar_t wc, char **buf)
 {
