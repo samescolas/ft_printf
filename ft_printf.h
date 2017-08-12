@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 11:30:40 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:05:46 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void			get_flags(char **fmt, t_flags *flags);
 void			get_length(char **fmt, t_length *length);
 int				get_base(char c);
 
-void			apply_formatting(t_argfmt info, char **text);
-void			apply_padding(t_argfmt info, char **text);
-void			apply_precision(t_argfmt info, char **text);
+void			apply_formatting(t_argfmt info, char **text, size_t *len);
+void			apply_padding(t_argfmt info, char **text, size_t *len);
+void			apply_precision(t_argfmt info, char **text, size_t *len);
 
 int				is_specifier(char c);
 int				is_signed_specifier(char c);

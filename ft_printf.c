@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 11:34:55 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:11:39 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 		fmt_info.sign = '+';
 	else
 		fmt_info.sign = '-';
-	apply_formatting(fmt_info, &fmt_info.text);
+	apply_formatting(fmt_info, &fmt_info.text, &fmt_info.arg_len);
 	if (ft_toupper(fmt_info.spec) == 'C' && is_blank(fmt_info.text))
 		write((++(*chars_printed) != 0),
 								fmt_info.text, ft_strlen(fmt_info.text));
 	else
-		*chars_printed += write(1, fmt_info.text, ft_strlen(fmt_info.text));
+		*chars_printed += write(1, fmt_info.text, fmt_info.arg_len);
 }
 
 static	int	is_double_percent(char **fmt, size_t *chars_printed)

@@ -6,13 +6,13 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 22:32:28 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 15:58:22 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:03:06 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	adjust_prec_str(t_argfmt info, char **text)
+static void	adjust_prec_str(t_argfmt info, char **text, size_t *len)
 {
 	char	*new;
 
@@ -20,6 +20,7 @@ static void	adjust_prec_str(t_argfmt info, char **text)
 	{
 		new = ft_strnew(info.prec);
 		ft_strncat(new, *text, info.prec);
+		*len = info.prec;
 	}
 	else
 		return ;
@@ -28,7 +29,7 @@ static void	adjust_prec_str(t_argfmt info, char **text)
 	new = (void *)0;
 }
 
-static void	adjust_prec_nbr(t_argfmt info, char **text)
+static void	adjust_prec_nbr(t_argfmt info, char **text, size_t *len)
 {
 	char	*new;
 	int		to_add;
@@ -37,9 +38,10 @@ static void	adjust_prec_nbr(t_argfmt info, char **text)
 	if ((info.flags.pad_with_zeros && info.flags.special) ||
 		   (!is_nonzero(*text) && ft_toupper(info.spec) != 'D'))
 		return ;
-	if (info.prec > 0 && (to_add = info.prec - ft_strlen(info.text)) > 0)
+	if ((to_add = info.prec - *len) > 0)
 	{
-		new = ft_strnew(to_add + ft_strlen(info.text));
+		*len += to_add;
+		new = ft_strnew(*len);
 		if (ft_toupper(info.spec) == 'X'
 									&& info.flags.special && is_nonzero(*text))
 		{
@@ -58,12 +60,12 @@ static void	adjust_prec_nbr(t_argfmt info, char **text)
 	}
 }
 
-void		apply_precision(t_argfmt info, char **text)
+void		apply_precision(t_argfmt info, char **text, size_t *len)
 {
 	if (ft_toupper(info.spec) == 'C' || info.prec <= 0)
 		return ;
 	else if (ft_toupper(info.spec) == 'S')
-		adjust_prec_str(info, text);
+		adjust_prec_str(info, text, len);
 	else
-		adjust_prec_nbr(info, text);
+		adjust_prec_nbr(info, text, len);
 }
