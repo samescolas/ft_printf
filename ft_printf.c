@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:11:39 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/12 12:28:17 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 		write((++(*chars_printed) != 0),
 								fmt_info.text, ft_strlen(fmt_info.text));
 	else
-		*chars_printed += write(1, fmt_info.text, fmt_info.arg_len);
+	{
+		write(1, fmt_info.text, ft_strlen(fmt_info.text));
+		*chars_printed += fmt_info.arg_len;
+	}
 }
 
 static	int	is_double_percent(char **fmt, size_t *chars_printed)
