@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 20:59:32 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 13:31:25 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:00:14 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include <sys/types.h>
+# include <locale.h>
 
 typedef	char	t_bool;
 
