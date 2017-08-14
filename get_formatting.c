@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:49:26 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/10 16:36:49 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:19:43 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	get_precision(char **fmt, t_argfmt *fmt_info)
 		fmt_info->prec = 0;
 		return ;
 	}
-	fmt_info->prec= ft_atoi(*fmt);
+	fmt_info->prec = ft_atoi(*fmt);
 	while (**fmt && ft_isdigit(**fmt))
 		++(*fmt);
 }

@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/12 11:18:35 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/13 23:18:48 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:36:06 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	wctomb_help(wchar_t wc, char **buf)
 	return (0);
 }
 
-char	*ft_wstrtomb(wchar_t *wstr)
+char		*ft_wstrtomb(wchar_t *wstr)
 {
 	char	*ret;
 	char	*ptr;
@@ -46,7 +46,7 @@ char	*ft_wstrtomb(wchar_t *wstr)
 	return (ret);
 }
 
-int		ft_wctomb(wchar_t wc, char **buf)
+int			ft_wctomb(wchar_t wc, char **buf)
 {
 	ft_bzero(*buf, 4 * sizeof(char));
 	if (wc <= 0x7f)
