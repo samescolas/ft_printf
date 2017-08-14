@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 21:55:20 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:09:31 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:16:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void		apply_padding(t_argfmt info, char **text, size_t *len)
 	if (info.flags.left_justify ||
 			(is_numeric_specifier(info.spec) && info.prec))
 		padding = ' ';
-	//if ((to_add = info.width - ft_strlen(*text)) > 0)
 	if ((to_add = info.width - *len) > 0)
 	{
 		new = ft_strnew(*len + to_add);

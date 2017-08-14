@@ -6,11 +6,18 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 22:32:28 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 12:03:06 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:15:23 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	cleanup_strs(char **text, char **replacement)
+{
+	ft_strdel(text);
+	*text = *replacement;
+	*replacement = (void *)0;
+}
 
 static void	adjust_prec_str(t_argfmt info, char **text, size_t *len)
 {
@@ -24,9 +31,7 @@ static void	adjust_prec_str(t_argfmt info, char **text, size_t *len)
 	}
 	else
 		return ;
-	ft_strdel(text);
-	*text = new;
-	new = (void *)0;
+	cleanup_strs(text, &new);
 }
 
 static void	adjust_prec_nbr(t_argfmt info, char **text, size_t *len)
@@ -34,9 +39,8 @@ static void	adjust_prec_nbr(t_argfmt info, char **text, size_t *len)
 	char	*new;
 	int		to_add;
 
-	new = (void *)0;
 	if ((info.flags.pad_with_zeros && info.flags.special) ||
-		   (!is_nonzero(*text) && ft_toupper(info.spec) != 'D'))
+		(!is_nonzero(*text) && ft_toupper(info.spec) != 'D'))
 		return ;
 	if ((to_add = info.prec - *len) > 0)
 	{
@@ -55,8 +59,7 @@ static void	adjust_prec_nbr(t_argfmt info, char **text, size_t *len)
 			ft_strcat(new, (info.text + 2));
 		else
 			ft_strcat(new, info.text);
-		ft_strdel(text);
-		*text = new;
+		cleanup_strs(text, &new);
 	}
 }
 
