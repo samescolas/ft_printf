@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/13 23:45:08 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:46:25 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			ft_printf(const char *fmt, ...)
 	va_list	arg_list;
 	size_t	chars_printed;
 
-	setlocale(LC_ALL, "en_FR.utf8");
 	chars_printed = 0;
 	va_start(arg_list, fmt);
 	ft_printf_va(fmt, &chars_printed, arg_list);
