@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 15:48:22 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/13 23:04:52 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 23:07:44 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,8 @@ static void	print_arg(char **fmt, size_t *chars_printed, va_list args)
 	else
 		fmt_info.sign = '-';
 	apply_formatting(fmt_info, &fmt_info.text, &fmt_info.arg_len);
-	//if (ft_toupper(fmt_info.spec) == 'C' && is_blank(fmt_info.text))
-		//write((++(*chars_printed) != 0),
-								//fmt_info.text, ft_strlen(fmt_info.text));
-	//else
-	//{
-		write(1, fmt_info.text, fmt_info.arg_len);
-		*chars_printed += fmt_info.arg_len;
-	//}
+	*chars_printed += write(1, fmt_info.text, fmt_info.arg_len);
+	ft_strdel(&fmt_info.text);
 }
 
 static	int	is_double_percent(char **fmt, size_t *chars_printed)
@@ -63,14 +57,10 @@ int			ft_printf(const char *fmt, ...)
 {
 	va_list	arg_list;
 	size_t	chars_printed;
-	char	*oldlocale;
 
-	oldlocale = ft_strdup(setlocale(LC_ALL, (void *)0));
-	setlocale(LC_ALL, "C");
 	chars_printed = 0;
 	va_start(arg_list, fmt);
 	ft_printf_va(fmt, &chars_printed, arg_list);
 	va_end(arg_list);
-	setlocale(LC_ALL, oldlocale);
 	return (chars_printed);
 }
