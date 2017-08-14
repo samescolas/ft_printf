@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 11:56:19 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/12 13:27:36 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/13 22:43:48 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		get_conversion(t_argfmt *fmt_info, va_list arg)
 	{
 		fmt_info->text = ft_strnew(1);
 		fmt_info->text[0] = va_arg(arg, int);
-		fmt_info->arg_len = ft_isprint(fmt_info->text[0]);
+		fmt_info->arg_len = 1;
 	}
 	else if (fmt_info->spec == 'C')
 	{
