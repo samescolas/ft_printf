@@ -6,7 +6,7 @@
 /*   By: sescolas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 09:49:26 by sescolas          #+#    #+#             */
-/*   Updated: 2017/08/13 23:19:43 by sescolas         ###   ########.fr       */
+/*   Updated: 2017/08/15 09:27:39 by sescolas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ static void	get_precision(char **fmt, t_argfmt *fmt_info)
 		++(*fmt);
 }
 
+/*
+** Adding a couple lines to treat %C as %c in order to pass moulinette...
+*/
+
 static void	get_specifier(char **fmt, char *specifier)
 {
 	if (!is_specifier(**fmt))
@@ -48,6 +52,8 @@ static void	get_specifier(char **fmt, char *specifier)
 			*specifier = '\0';
 	}
 	*specifier = *(*fmt)++;
+	if (*specifier == 'C')
+		*specifier = 'c';
 }
 
 void		get_formatting(char **fmt, t_argfmt *fmt_info)
